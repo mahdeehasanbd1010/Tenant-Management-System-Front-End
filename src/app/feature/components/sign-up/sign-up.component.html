@@ -9,49 +9,131 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                <form class="mx-1 mx-md-4">
+                <form class="mx-1 mx-md-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="fullName" name="fullName" class="form-control" formControlName="fullName"
+                               placeholder="Full Name" [(ngModel)]="signUpModel.fullName" required
+                               [ngClass]="{ 'is-invalid': submitted && f['fullName'].errors }"/>
+                        <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+                          <div *ngIf="f['fullName'].errors['required']">Full Name is required</div>
+                        </div>
+                      </div>
+                    </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" />
-                      <label class="form-label" for="form3Example1c">Your Name</label>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="username" name="username" class="form-control" formControlName="username"
+                               placeholder="Username" [(ngModel)]="signUpModel.username" required
+                               [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"/>
+                        <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                          <div *ngIf="f['username'].errors['required']">Username is required</div>
+                          <div *ngIf="f['username'].errors['minlength']">
+                            Username must be at least 6 characters
+                          </div>
+                          <div *ngIf="f['username'].errors['maxlength']">
+                            Username must not exceed 20 characters
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" />
-                      <label class="form-label" for="form3Example3c">Your Email</label>
+                  <div class="form-group">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="email" name="email" class="form-control" formControlName="email"
+                               placeholder="Email" [(ngModel)]="signUpModel.email" required
+                               [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"/>
+                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                          <div *ngIf="f['email'].errors['required']">Email is required</div>
+                          <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" class="form-control" />
-                      <label class="form-label" for="form3Example4c">Password</label>
+                  <div class="form-group">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" formControlName="phoneNumber"
+                               placeholder="Phone Number" [(ngModel)]="signUpModel.phoneNumber" required
+                               [ngClass]="{ 'is-invalid': submitted && f['phoneNumber'].errors }"/>
+                        <div *ngIf="submitted && f['phoneNumber'].errors" class="invalid-feedback">
+                          <div *ngIf="f['phoneNumber'].errors['required']">Phone Number is required</div>
+                          <div *ngIf="f['phoneNumber'].errors['minlength'] || f['phoneNumber'].errors['maxlength']">
+                            Phone Number must be at least 11 digit
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="password" name="password" class="form-control" formControlName="password"
+                               placeholder="Password" [(ngModel)]="signUpModel.password" required
+                               [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"/>
+                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                          <div *ngIf="f['password'].errors['required']">Password is required</div>
+                          <div *ngIf="f['password'].errors['minlength']">
+                            Password must be at least 6 characters
+                          </div>
+                          <div *ngIf="f['password'].errors['maxlength']">
+                            Username must not exceed 40 characters
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="repeatPassword" name="repeatPassword" class="form-control" formControlName="repeatPassword"
+                               placeholder="Repeat password" [(ngModel)]="signUpModel.repeatPassword" required
+                               [ngClass]="{ 'is-invalid': submitted && f['repeatPassword'].errors }"/>
+                        <div *ngIf="submitted && f['repeatPassword'].errors" class="invalid-feedback">
+                          <div *ngIf="f['repeatPassword'].errors['required']">
+                            Confirm Password is required
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="form-group form-check">
+                    <div class="form-check d-flex justify-content-center mb-5">
+                      <div class="form-outline flex-fill mb-0">
+                        <input class="form-check-input me-2" type="checkbox" value="" id="acceptTerms"
+                               formControlName="acceptTerms" (click)="agreeToTheStatements()"/>
+                        <label class="form-check-label" for="acceptTerms">
+                          I agree all statements in <a href="#!">Terms of service</a>
+                        </label>
+                      </div>
+
                     </div>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4cd" class="form-control" />
-                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                  <div class="form-group">
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!isAgree">Register</button>
                     </div>
-                  </div>
-
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                    <label class="form-check-label" for="form2Example3">
-                      I agree all statements in <a href="#!">Terms of service</a>
-                    </label>
-                  </div>
-
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
                   </div>
 
                 </form>
