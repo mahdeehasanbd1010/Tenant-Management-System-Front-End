@@ -6,12 +6,13 @@ import {HomeComponent} from "./components/home/home.component";
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import {FormsModule} from "@angular/forms";
 import {ReactiveFormsModule} from "@angular/forms";
-
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     SignUpComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +22,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   exports:[
     HomeComponent,
-    SignUpComponent
+    SignUpComponent,
+    LoginComponent
   ]
 })
 export class FeatureModule { }

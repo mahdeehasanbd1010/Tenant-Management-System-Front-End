@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SignUpModel} from "../../models/sign-up-model/sign-up.model";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-
+import {Validation} from "../../utils/validation/validation";
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
     username: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
-    confirmPassword: new FormControl(''),
+    repeatPassword: new FormControl(''),
     acceptTerms: new FormControl(false),
   });
 
@@ -62,29 +62,28 @@ export class SignUpComponent implements OnInit {
             Validators.maxLength(40),
           ]
         ],
-        repeatPassword: ['', [Validators.required]],
+        repeatPassword: ['', Validators.required],
         acceptTerms: [false, Validators.requiredTrue]
       },
       {
-        //validators: [Validation.match('password', 'confirmPassword')]
+        validators: [Validation.match('password', 'repeatPassword')]
       }
     );
   }
 
   get f(): { [key: string]: AbstractControl } {
-    console.log(this.form.controls);
     return this.form.controls;
   }
+
   onSubmit(): void {
     this.submitted = true;
     if (this.form.invalid) {
       return;
     }
+    console.log(this.signUpModel);
     console.log(JSON.stringify(this.form.value, null, 2));
-  }
-  onReset(): void {
-    this.submitted = false;
     this.form.reset();
+    this.signUpModel = new SignUpModel();
   }
 
 }
