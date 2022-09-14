@@ -7,6 +7,12 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import {FormsModule} from "@angular/forms";
 import {ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import { NgOtpInputModule } from  'ng-otp-input';
+
+import {environment} from "../../environments/environment";
 
 @NgModule({
   declarations: [
@@ -18,7 +24,11 @@ import { LoginComponent } from './components/login/login.component';
     CommonModule,
     FeatureRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    NgOtpInputModule
   ],
   exports:[
     HomeComponent,

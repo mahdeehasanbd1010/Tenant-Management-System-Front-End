@@ -1,7 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {SignUpModel} from "../../models/sign-up-model/sign-up.model";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Validation} from "../../utils/validation/validation";
+import firebase from "firebase/compat/app";
+import "firebase/auth";
+import "firebase/firestore";
+import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
+
+const fireBaseConfig = {
+  apiKey: "AIzaSyD8BFbmUB4me0h5PjBFm2TgPAhCPu8s8Ck",
+  authDomain: "otpverification-2d339.firebaseapp.com",
+  projectId: "otpverification-2d339",
+  storageBucket: "otpverification-2d339.appspot.com",
+  messagingSenderId: "556029321926",
+  appId: "1:556029321926:web:80feb9752a373fbd182dc7",
+  measurementId: "G-CE3FK7Q4XN"
+}
+
 
 @Component({
   selector: 'app-sign-up',
@@ -11,9 +27,25 @@ import {Validation} from "../../utils/validation/validation";
 export class SignUpComponent implements OnInit {
 
   signUpModel: SignUpModel = new SignUpModel();
-  isAgree = false;
+  isAgree: any = false;
+  submitted: any = false;
+  isOtp: any = false;
+  otpCode: any;
+  verificationId:any;
+  isFilledOtp: any = false;
 
-  submitted = false;
+  otpFieldConfig = {
+    allowNumbersOnly:true,
+    length:6,
+    isPasswordInput:false,
+    disableAutoFocus:false,
+    placeholder: '',
+    inputStyles:{
+      width:'40px',
+      height: '50px'
+    }
+
+  }
 
   form: FormGroup = new FormGroup({
     fullName: new FormControl(''),
@@ -24,11 +56,19 @@ export class SignUpComponent implements OnInit {
     acceptTerms: new FormControl(false),
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  reCaptchaVerifier: any;
+
+  constructor(private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
+    firebase.initializeApp(fireBaseConfig);
     this.signUpModel = new SignUpModel();
     this.isAgree = false;
+    this.isOtp = false;
+
+    localStorage.removeItem('verificationId');
+
     this.validateTheFormField();
   }
 
@@ -82,8 +122,68 @@ export class SignUpComponent implements OnInit {
     }
     console.log(this.signUpModel);
     console.log(JSON.stringify(this.form.value, null, 2));
-    this.form.reset();
-    this.signUpModel = new SignUpModel();
+    this.getOTP();
+  }
+
+
+  getOTP(){
+    console.log('in get otp');
+    console.log(this.signUpModel.phoneNumber);
+    this.reCaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-up-button',
+      {size:'invisible'});
+    firebase.auth().signInWithPhoneNumber('+88'+this.signUpModel.phoneNumber, this.reCaptchaVerifier)
+      .then((confirmationResult: any)=>{
+        console.log(confirmationResult);
+        localStorage.removeItem('verificationId');
+        localStorage.setItem('verificationId', JSON.stringify(confirmationResult.verificationId));
+        console.log(localStorage.getItem('verificationId'));
+        this.verificationId = JSON.parse(localStorage.getItem('verificationId')||'{}');
+        this.isOtp = true;
+        //this.router.navigate(['/login']);
+      }).catch((error: any)=>{
+        alert(error.message);
+        console.log(error);
+        window.location.reload();
+    });
+  }
+
+  onOtpChange(otpCode: any){
+    if(otpCode.length===this.otpFieldConfig.length){
+     this.isFilledOtp = true;
+    }
+    this.otpCode = otpCode;
+  }
+
+  verifyOtp(){
+    console.log(this.verificationId);
+    let credentials: any = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.otpCode);
+    firebase.auth().signInWithCredential(credentials).then((response:any)=>{
+      console.log(response);
+      localStorage.setItem('user_data', JSON.stringify(response));
+      Swal.fire(
+        "OTP Verification Successful",
+        "You are successfully sign up!",
+        "success"
+      ).then((response: any)=>{
+        this.router.navigate(['/login']);
+      }).catch((error: any)=>{
+        alert(error.message);
+        console.log(error);
+      });
+
+    }).catch((error: any)=>{
+      Swal.fire(
+        "OTP Verification Didn't Successful",
+        "Please try again",
+        "warning"
+      ).then((response: any)=>{
+        this.router.navigate(['/sign-up']);
+      }).catch((error: any)=>{
+        alert(error.message);
+        console.log(error);
+      });
+      console.log(error);
+    });
   }
 
 }

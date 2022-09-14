@@ -8,8 +8,6 @@ export class Validation {
         return null;
       }
       if (control?.value !== checkControl?.value) {
-        console.log(control?.value);
-        console.log(checkControl?.value);
         controls.get(checkControlName)?.setErrors({ matching: true });
         return { matching: true };
       } else {

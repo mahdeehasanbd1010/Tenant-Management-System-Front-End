@@ -7,9 +7,10 @@
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                <p *ngIf="!isOtp" class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                <p *ngIf="isOtp" class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">OTP</p>
 
-                <form class="mx-1 mx-md-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <form *ngIf="!isOtp" class="mx-1 mx-md-4" [formGroup]="form" (ngSubmit)="onSubmit()">
                   <div class="form-group">
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -22,7 +23,6 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
 
                   <div class="form-group">
@@ -132,13 +132,30 @@
 
                   <div class="form-group">
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!isAgree">Register</button>
+                      <button type="submit" class="btn btn-primary btn-lg sign-up" [disabled]="!isAgree">Register</button>
                     </div>
                   </div>
-
                 </form>
 
+                <form *ngIf="isOtp" class="mx-1 mx-md-4" (ngSubmit)="verifyOtp()">
+                  <div class="form-group">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="otpFieldConfig"></ng-otp-input>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button type="submit" class="btn btn-success btn-lg sign-up" [disabled]="!isFilledOtp">Verify otp</button>
+                    </div>
+                  </div>
+                </form>
+
+
               </div>
+              <div id="sign-up-button"></div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
                 <img src="https://img.freepik.com/premium-vector/house-owner-gives-key-tenant_701961-829.jpg?w=2000"
