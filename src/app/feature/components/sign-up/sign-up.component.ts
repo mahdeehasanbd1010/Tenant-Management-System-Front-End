@@ -30,22 +30,9 @@ export class SignUpComponent implements OnInit {
   isAgree: any = false;
   submitted: any = false;
   isOtp: any = false;
-  otpCode: any;
   verificationId:any;
-  isFilledOtp: any = false;
 
-  otpFieldConfig = {
-    allowNumbersOnly:true,
-    length:6,
-    isPasswordInput:false,
-    disableAutoFocus:false,
-    placeholder: '',
-    inputStyles:{
-      width:'40px',
-      height: '50px'
-    }
 
-  }
 
   form: FormGroup = new FormGroup({
     fullName: new FormControl(''),
@@ -116,18 +103,18 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('onSubmit');
     this.submitted = true;
     if (this.form.invalid) {
       return;
     }
-    console.log(this.signUpModel);
-    console.log(JSON.stringify(this.form.value, null, 2));
+    // console.log(JSON.stringify(this.form.value, null, 2));
     this.getOTP();
   }
 
 
   getOTP(){
-    console.log('in get otp');
+    console.log('getOtp');
     console.log(this.signUpModel.phoneNumber);
     this.reCaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-up-button',
       {size:'invisible'});
@@ -147,43 +134,43 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  onOtpChange(otpCode: any){
-    if(otpCode.length===this.otpFieldConfig.length){
-     this.isFilledOtp = true;
-    }
-    this.otpCode = otpCode;
-  }
+  // onOtpChange(otpCode: any){
+  //   if(otpCode.length===this.otpFieldConfig.length){
+  //    this.isFilledOtp = true;
+  //   }
+  //   this.otpCode = otpCode;
+  // }
 
-  verifyOtp(){
-    console.log(this.verificationId);
-    let credentials: any = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.otpCode);
-    firebase.auth().signInWithCredential(credentials).then((response:any)=>{
-      console.log(response);
-      localStorage.setItem('user_data', JSON.stringify(response));
-      Swal.fire(
-        "OTP Verification Successful",
-        "You are successfully sign up!",
-        "success"
-      ).then((response: any)=>{
-        this.router.navigate(['/login']);
-      }).catch((error: any)=>{
-        alert(error.message);
-        console.log(error);
-      });
-
-    }).catch((error: any)=>{
-      Swal.fire(
-        "OTP Verification Didn't Successful",
-        "Please try again",
-        "warning"
-      ).then((response: any)=>{
-        this.router.navigate(['/sign-up']);
-      }).catch((error: any)=>{
-        alert(error.message);
-        console.log(error);
-      });
-      console.log(error);
-    });
-  }
+  // verifyOtp(){
+  //   console.log(this.verificationId);
+  //   let credentials: any = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.otpCode);
+  //   firebase.auth().signInWithCredential(credentials).then((response:any)=>{
+  //     console.log(response);
+  //     localStorage.setItem('user_data', JSON.stringify(response));
+  //       Swal.fire(
+  //         "OTP Verification Successful",
+  //         "You are successfully sign up!",
+  //         "success"
+  //       ).then((response: any)=>{
+  //         this.router.navigate(['/login']);
+  //       }).catch((error: any)=>{
+  //         alert(error.message);
+  //         console.log(error);
+  //       });
+  //
+  //   }).catch((error: any)=>{
+  //       Swal.fire(
+  //         "OTP Verification Didn't Successful",
+  //         "Please try again",
+  //         "warning"
+  //       ).then((response: any)=>{
+  //         this.router.navigate(['/sign-up']);
+  //       }).catch((error: any)=>{
+  //         alert(error.message);
+  //         console.log(error);
+  //       });
+  //       console.log(error);
+  //   });
+  // }
 
 }

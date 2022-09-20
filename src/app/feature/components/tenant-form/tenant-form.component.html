@@ -1,0 +1,123 @@
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+  <div class="wrapper wrapper--w790" #registrationForm>
+    <div class="card card-5">
+      <div class="card-heading">
+        <h2 class="title">Tenant Registration Form</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+          <div class="form-row m-b-55">
+            <div class="name">Name</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="name" name="name" class="form-control"
+                       formControlName="name" [(ngModel)]="tenantFormModel.name">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Father Name</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="fatherName" name="fatherName" class="form-control"
+                       formControlName="fatherName" [(ngModel)]="tenantFormModel.fatherName">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Date of Birth</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="date" id="dateOfBirth" name="dateOfBirth" class="form-control"
+                       formControlName="dateOfBirth" [(ngModel)]="tenantFormModel.dateOfBirth">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Marital Status</div>
+            <div class="value">
+              <div class="input-group">
+                <div class="input--style-5" class="rs-select2 js-select-simple select--no-search">
+                  <select name="subject" id="maritalStatus" name="maritalStatus" class="form-control"
+                          formControlName="maritalStatus" [(ngModel)]="tenantFormModel.maritalStatus">
+                    <option disabled="disabled" selected="selected">Choose option</option>
+                    <option>Married</option>
+                    <option>Unmarried</option>
+                  </select>
+                  <div class="select-dropdown"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row m-b-55">
+            <div class="name">Phone Number</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="phoneNumber" name="phoneNumber" class="form-control"
+                       formControlName="phoneNumber" [(ngModel)]="tenantFormModel.phoneNumber">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Occupation</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="occupation" name="occupation" class="form-control"
+                       formControlName="occupation" [(ngModel)]="tenantFormModel.occupation">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Present Address</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="presentAddress" name="presentAddress" class="form-control"
+                       formControlName="presentAddress" [(ngModel)]="tenantFormModel.presentAddress">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Permanent Address</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="permanentAddress" name="presentAddress" class="form-control"
+                       formControlName="permanentAddress" [(ngModel)]="tenantFormModel.permanentAddress">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">NID Number</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="nidNumber" name="nidNumber" class="form-control"
+                       formControlName="nidNumber" [(ngModel)]="tenantFormModel.nidNumber">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Passport Number</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="passportNumber" name="passportNumber" class="form-control"
+                       formControlName="passportNumber" [(ngModel)]="tenantFormModel.passportNumber">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Image File</div>
+            <div class="value">
+              <div class="input-group">
+                <img [src]="imageUrl" alt="Upload Image" height="200">
+                <input type="file" id="imageFile" name="imageFile" (change)="onSelectFile($event)">
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
