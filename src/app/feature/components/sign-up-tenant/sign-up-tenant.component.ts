@@ -95,12 +95,13 @@ export class SignUpTenantComponent implements OnInit {
     // console.log(JSON.stringify(this.form.value, null, 2));
 
     this.tenantAuthService.signUpToTheServer(this.tenant).subscribe((response)=>{
+      console.log(response);
       if(response){
         console.log(response);
         this.router.navigate(['/login']);
       }
     }, (error: any)=>{
-      alert(error.message());
+      alert(error.message);
       console.log(error);
     })
 

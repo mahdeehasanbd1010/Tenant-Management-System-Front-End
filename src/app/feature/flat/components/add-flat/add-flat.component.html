@@ -1,0 +1,145 @@
+<div class="page-wrapper bg-gra-01 p-t-45 p-b-50">
+  <div class="wrapper wrapper--w790">
+    <div class="card card-5">
+      <div class="card-heading">
+        <h2 class="title">Add Flat</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="name">Flat Id</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="flatId" name="flatId" class="form-control"
+                       formControlName="flatId" [(ngModel)]="flatModel.flatId" required
+                       [ngClass]="{ 'is-invalid': submitted && f['flatId'].errors }">
+                <div *ngIf="submitted && f['flatId'].errors" class="invalid-feedback">
+                  <div *ngIf="f['flatId'].errors['required']">Flat Id is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Floor Number</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="number" id="floorNumber" name="floorNumber" class="form-control"
+                       formControlName="address" [(ngModel)]="flatModel.floorNumber" required
+                       [ngClass]="{ 'is-invalid': submitted && f['floorNumber'].errors }">
+                <div *ngIf="submitted && f['floorNumber'].errors" class="invalid-feedback">
+                  <div *ngIf="f['floorNumber'].errors['required']">Floor Number is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Number of Room</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="numberOfRoom" name="numberOfRoom" class="form-control"
+                       formControlName="numberOfRoom" [(ngModel)]="flatModel.numberOfRoom" required
+                       [ngClass]="{ 'is-invalid': submitted && f['numberOfRoom'].errors }">
+                <div *ngIf="submitted && f['numberOfRoom'].errors" class="invalid-feedback">
+                  <div *ngIf="f['numberOfRoom'].errors['required']">Number of Room is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Number of Washroom</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="numberOfWashroom" name="numberOfWashroom" class="form-control"
+                       formControlName="numberOfWashroom" [(ngModel)]="flatModel.numberOfWashroom" required
+                       [ngClass]="{ 'is-invalid': submitted && f['numberOfWashroom'].errors }">
+                <div *ngIf="submitted && f['numberOfWashroom'].errors" class="invalid-feedback">
+                  <div *ngIf="f['numberOfWashroom'].errors['required']">Number of Washroom is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Number of Dining Room</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="numberOfDiningRoom" name="numberOfDiningRoom" class="form-control"
+                       formControlName="numberOfDiningRoom" [(ngModel)]="flatModel.numberOfDiningRoom" required
+                       [ngClass]="{ 'is-invalid': submitted && f['numberOfDiningRoom'].errors }">
+                <div *ngIf="submitted && f['numberOfDiningRoom'].errors" class="invalid-feedback">
+                  <div *ngIf="f['numberOfDiningRoom'].errors['required']">Number of Dining Room is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Number of Drawing Room</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="numberOfDrawingRoom" name="numberOfDrawingRoom" class="form-control"
+                       formControlName="numberOfDrawingRoom" [(ngModel)]="flatModel.numberOfDrawingRoom" required
+                       [ngClass]="{ 'is-invalid': submitted && f['numberOfDrawingRoom'].errors }">
+                <div *ngIf="submitted && f['numberOfDrawingRoom'].errors" class="invalid-feedback">
+                  <div *ngIf="f['numberOfDrawingRoom'].errors['required']">Number of Drawing Room is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Number of Balcony</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="numberOfBalcony" name="numberOfBalcony" class="form-control"
+                       formControlName="numberOfBalcony" [(ngModel)]="flatModel.numberOfBalcony" required
+                       [ngClass]="{ 'is-invalid': submitted && f['numberOfBalcony'].errors }">
+                <div *ngIf="submitted && f['numberOfBalcony'].errors" class="invalid-feedback">
+                  <div *ngIf="f['numberOfBalcony'].errors['required']">Number of Balcony is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Number of Kitchen</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="numberOfKitchen" name="numberOfKitchen" class="form-control"
+                       formControlName="numberOfKitchen" [(ngModel)]="flatModel.numberOfKitchen" required
+                       [ngClass]="{ 'is-invalid': submitted && f['numberOfKitchen'].errors }">
+                <div *ngIf="submitted && f['numberOfKitchen'].errors" class="invalid-feedback">
+                  <div *ngIf="f['numberOfKitchen'].errors['required']">Number of Kitchen is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Number of Kitchen</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="text" id="rent" name="rent" class="form-control"
+                       formControlName="rent" [(ngModel)]="flatModel.rent" required
+                       [ngClass]="{ 'is-invalid': submitted && f['rent'].errors }">
+                <div *ngIf="submitted && f['rent'].errors" class="invalid-feedback">
+                  <div *ngIf="f['rent'].errors['required']">Number of Kitchen is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn--radius-2 btn--green" type="submit">Add</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

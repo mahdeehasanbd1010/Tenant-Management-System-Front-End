@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <h2>Houses List</h2>
+  </div>
+  <div class="row d-flex flex-row">
+    <div class="card" style="width: 18rem;">
+      <div class="card-heading"></div>
+      <div class="card-body">
+        <h5 class="card-title">Add House</h5>
+        <a href="house/add">
+          <div class="card-text"><i class="fa fa-5x fa-plus-circle" aria-hidden="true"></i>
+          </div>
+        </a>
+
+      </div>
+    </div>
+    <div *ngFor="let house of houseList" class="card" style="width: 18rem;">
+      <div class="card-heading">
+        <img src="assets/images/house.jpg" class="card-img-top" alt="house image">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{house.HouseId}}</h5>
+        <p class="card-text">{{house.Address}}</p>
+        <a [href]="'house/details/'+house.HouseId" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+  </div>
+</div>

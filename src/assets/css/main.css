@@ -29,7 +29,7 @@
 }
 
 .row .col-2:last-child .input-group-desc {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 .row-space {
@@ -259,10 +259,6 @@ h4 {
   font-size: 18px;
 }
 
-h5 {
-  font-size: 15px;
-}
-
 h6 {
   font-size: 13px;
 }
@@ -397,6 +393,7 @@ h6 {
   font-weight: 700;
   color: #fff;
   font-family: inherit;
+  margin: 5px 5px;
 }
 
 .btn--radius {
@@ -724,6 +721,13 @@ input {
   font-weight: 700;
   text-align: center;
   color: #fff;
+}
+.sub-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+  margin-bottom: 15px ;
 }
 
 /* ==========================================================================

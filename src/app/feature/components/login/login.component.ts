@@ -21,11 +21,9 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private formBuilder:FormBuilder,
-              private router: Router,
               private homeownerAuthService: HomeownerAuthService) { }
 
   ngOnInit(): void {
-    console.log("hello login");
     this.submitted = false;
     this.validateTheFormField();
   }
@@ -49,16 +47,23 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    // console.log(JSON.stringify(this.form.value, null, 2));
 
-    this.homeownerAuthService.loginToTheServer(this.loginModel).subscribe((response:any)=>{
-      if(response){
-        console.log(response);
-        this.router.navigate(['']);
-      }
-    },(error: any)=>{
+    this.homeownerAuthService.loginToTheServer(this.loginModel).subscribe({
+      next: (response:any)=>{
+        if(response){
+          const data: any = response;
+          const token: any = response.Token;
+          console.log(data);
+          localStorage.setItem("jwt", token);
+          localStorage.setItem("userDetails", JSON.stringify(data));
+          if(response.UserType == "Homeowner"){
+            window.location.assign("");
+          }
+        }
+    }, error:(error: any)=>{
       alert(error.message);
       console.log(error);
+    }
     });
   }
 

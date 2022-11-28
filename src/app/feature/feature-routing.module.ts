@@ -8,6 +8,7 @@ import {SignUpTenantComponent} from "./components/sign-up-tenant/sign-up-tenant.
 import {LoginTypeComponent} from "./components/login-type/login-type.component";
 import {LoginTenantComponent} from "./components/login-tenant/login-tenant.component";
 import {TenantFormComponent} from "./components/tenant-form/tenant-form.component";
+import {AuthGuardService} from "../shared/services/auth-guard/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -40,7 +41,8 @@ const routes: Routes = [
   },
   {
     path:'tenant/tenant-form',
-    component: TenantFormComponent
+    component: TenantFormComponent,
+    canActivate: [AuthGuardService]
   }
 
 ];

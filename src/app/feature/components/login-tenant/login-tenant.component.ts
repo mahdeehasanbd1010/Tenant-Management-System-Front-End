@@ -46,14 +46,22 @@ export class LoginTenantComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.tenantAuthService.loginToTheServer(this.loginModel).subscribe((response:any)=>{
+    this.tenantAuthService.loginToTheServer(this.loginModel).subscribe({next:(response:any)=>{
       if(response){
-        console.log(response);
-        this.router.navigate(['tenant/tenant-form']);
+        const data: any = response;
+        const token: any = response.Token;
+        console.log(data);
+        localStorage.setItem("jwt", token);
+        localStorage.setItem("userDetails", JSON.stringify(data));
+        if(response.UserType == "Tenant"){
+          window.location.assign("tenant/tenant-form");
+        }
       }
-    },(error: any)=>{
-      alert(error.message);
-      console.log(error);
+    },
+      error: (error: any)=>{
+        alert(error.message);
+        console.log(error);
+      }
     });
   }
 

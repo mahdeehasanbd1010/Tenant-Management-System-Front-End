@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-gra-03">
   <div class="container-fluid">
     <div>
-      <i class="fa fa-user" aria-hidden="true"></i>
+      <i class="fa-solid fa-house"></i>
     </div>
     <a class="navbar-brand" href="/">TMS</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,13 +9,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="#">Houses</a>
-        <a class="nav-link" href="#">About</a>
-        <a class="nav-link" href="#" tabindex="-1">Help</a>
+        <a class="nav-link {{containKeyWord('')?'active':''}}" aria-current="page" href="/">Home</a>
+        <a class="nav-link {{containKeyWord('house')?'active':''}}" href="house">House</a>
+        <a class="nav-link {{containKeyWord('about')?'active':''}}" href="#">About</a>
+        <a class="nav-link {{containKeyWord('help')?'active':''}}" href="#" tabindex="-1">Help</a>
       </div>
     </div>
-    <button class="btn btn-dark ms-3" [routerLink]="['login']">Login</button>
-    <button class="btn btn-dark ms-3" [routerLink]="['sign-up']">Sign Up</button>
+    <div *ngIf="!isAuthenticateUser">
+      <button class="btn btn--green" [routerLink]="['login']">Login</button>
+      <button class="btn btn--green" [routerLink]="['sign-up']">Sign Up</button>
+    </div>
+    <div *ngIf="isAuthenticateUser">
+      <i class="fa-lg fa-solid fa-user"></i>
+      <span class="avatar" [innerHTML]="userIcon"></span>
+      <button class="btn btn--red" (click)="logout()">Logout</button>
+    </div>
   </div>
 </nav>

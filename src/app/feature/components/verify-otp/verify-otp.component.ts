@@ -44,8 +44,7 @@ export class VerifyOtpComponent implements OnInit {
   otpCode: any;
   homeowner: HomeownerModel = new HomeownerModel();
 
-  constructor(private router: Router,
-              private homeownerAuthService: HomeownerAuthService) { }
+  constructor(private homeownerAuthService: HomeownerAuthService) { }
 
 
   ngOnInit(): void {
@@ -73,6 +72,8 @@ export class VerifyOtpComponent implements OnInit {
     console.log(this.verificationId);
     console.log(this.signUpModel);
 
+    this.isFilledOtp = false;
+
     let credentials: any = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.otpCode);
     firebase.auth().signInWithCredential(credentials).then((response:any)=>{
       console.log(response);
@@ -84,16 +85,17 @@ export class VerifyOtpComponent implements OnInit {
       ).then((response: any)=>{
         if(response){
           this.convertModelToHomeowner();
-          this.homeownerAuthService.signUpToTheServer(this.homeowner).subscribe((response: any)=>{
+          this.homeownerAuthService.signUpToTheServer(this.homeowner).subscribe({next: (response: any)=>{
             if(response){
               console.log("successfully sign up");
               console.log(response);
+              window.location.assign("login");
             }
-          }, (error: any)=>{
+          }, error: (error: any)=>{
             alert(error.message());
             console.log(error);
+          }
           });
-          this.router.navigate(['/login']);
         }
 
       }).catch((error: any)=>{
@@ -107,7 +109,7 @@ export class VerifyOtpComponent implements OnInit {
         "Please try again",
         "warning"
       ).then((response: any)=>{
-        this.router.navigate(['/sign-up']);
+        window.location.assign("sign-up");
       }).catch((error: any)=>{
         alert(error.message);
         console.log(error);
