@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2>Flats List</h2>
+    <h2>{{houseId}} House Flat List</h2>
   </div>
   <div class="row d-flex flex-row">
     <div class="card" style="width: 18rem;">
@@ -11,6 +11,16 @@
           <div class="card-text"><i class="fa fa-5x fa-plus-circle" aria-hidden="true"></i>
           </div>
         </a>
+      </div>
+    </div>
+    <div *ngFor="let flat of flatList" class="card" style="width: 18rem;">
+      <div class="card-heading">
+        <img src="assets/images/flat.jfif" class="card-img-top" alt="house image">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{flat.FlatId}}</h5>
+<!--        <p class="card-text">{{flat.}}</p>-->
+        <a [href]="'house/details/'+flat.HouseId+'/flat/'+flat.FlatId" class="btn btn-primary">Details</a>
       </div>
     </div>
   </div>

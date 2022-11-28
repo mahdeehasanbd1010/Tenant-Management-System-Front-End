@@ -28,7 +28,7 @@ export class HouseIndexComponent implements OnInit {
         alert(err.message);
         console.log(err.message);
       }
-    })
+    });
   }
 
 }

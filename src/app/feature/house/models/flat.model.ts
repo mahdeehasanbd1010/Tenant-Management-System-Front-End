@@ -13,5 +13,5 @@ export class FlatModel {
   numberOfBalcony!:number;
   numberOfKitchen!:number;
   rent!:number;
-  tenant!:TenantModel;
+  tenantId!:string;
 }

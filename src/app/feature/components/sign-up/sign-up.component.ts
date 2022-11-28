@@ -105,6 +105,7 @@ export class SignUpComponent implements OnInit {
   onSubmit(): void {
     console.log('onSubmit');
     this.submitted = true;
+    this.isAgree = false;
     if (this.form.invalid) {
       return;
     }

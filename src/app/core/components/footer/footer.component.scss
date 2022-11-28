@@ -1,0 +1,133 @@
+$base-color: #032250;
+$footer-body: #02152C;
+$font-white: #02152C;
+
+footer {
+  position: relative;
+  background-color: $base-color;
+  margin-top: 50px;
+
+  .company-info-wrapper {
+    padding: 50px 1.375rem;
+    background-color: $footer-body;
+  }
+
+  .subscribe-cta-wrapper {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    padding: 90px 0;
+
+    .subscribe-cta-holder {
+      min-height: 18.75rem;
+    }
+  }
+
+  .subscribe-cta-text {
+    font-family: 'formularmedium', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    color: $font-white;
+    font-size: 2.25rem;
+    /*36px*/
+    line-height: 1.5;
+  }
+
+  .subscribe-cta-btn {
+    margin-top: 50px;
+  }
+
+  .top-left-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .btn-subscribe {
+    border-radius: 100px !important;
+    max-width: 13.875rem;
+    min-width: 11.875rem;
+    font-size: 1.125rem !important;
+    font-family: 'formularmedium', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1.7;
+    padding: 0.75rem 1.875rem;
+
+  }
+
+  .copyright {
+    color: $font-white;
+    font-size: 0.875rem;
+    /*14px*/
+    font-family: 'formularregular', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+
+    a {
+      color: white;
+    }
+  }
+
+  .btn {
+    font-size: 0.875rem;
+    /*14px*/
+    border-radius: 1rem;
+    line-height: 1.3;
+
+    &+.btn {
+      margin-left: 18px;
+    }
+  }
+
+  .list-group {
+    margin-left: 50px;
+
+    .list-group-item {
+      background-color: transparent;
+      border: 0;
+      font-family: 'formularmedium', sans-serif;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 1rem;
+      /*16px*/
+      line-height: 1.5;
+      padding: 0;
+
+      &.list-header {
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: white;
+      }
+
+      a {
+        color: $font-white;
+        font-size: 16px;
+        /*16px*/
+        font-family: 'formularregular', sans-serif;
+        font-weight: normal;
+        font-style: normal;
+        text-decoration: none;
+        white-space: nowrap;
+        line-height: 30px;
+
+        &.archive {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .social-media-icon {
+    margin-left: 0;
+  }
+
+  .company-logo{
+    svg {
+      margin-bottom: 10px;
+    }
+  }
+
+}
+

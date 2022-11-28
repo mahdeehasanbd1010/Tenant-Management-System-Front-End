@@ -4,6 +4,8 @@ import {HouseIndexComponent} from "./components/house-index/house-index.componen
 import {AuthGuardService} from "../../shared/services/auth-guard/auth-guard.service";
 import {HouseDetailsComponent} from "./components/house-details/house-details.component";
 import {AddHouseComponent} from "./components/add-house/add-house.component";
+import {AddFlatComponent} from "./components/add-flat/add-flat.component";
+import {FlatDetailsComponent} from "./components/flat-details/flat-details.component";
 
 
 const routes: Routes = [
@@ -23,8 +25,14 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path:'details/:houseId/flat',
-    loadChildren: () => import('../flat/flat.module').then(m => m.FlatModule)
+    path:'details/:houseId/flat/add',
+    component: AddFlatComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path:'details/:houseId/flat/:flatId',
+    component: FlatDetailsComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
