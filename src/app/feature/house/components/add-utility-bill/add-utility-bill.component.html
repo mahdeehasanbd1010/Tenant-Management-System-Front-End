@@ -1,0 +1,53 @@
+<div class="page-wrapper bg-gra-01 p-t-45 p-b-50">
+  <div class="wrapper wrapper--w790">
+    <div class="card card-5">
+      <div class="card-heading">
+        <h2 class="title">Add Bill Info</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="name">Bill Name</div>
+            <div class="value">
+              <div class="input-group">
+                <select id="billName" name="billName" class="form-control"
+                        formControlName="billName" [(ngModel)]="utilityBillModel.billName" required
+                        [ngClass]="{ 'is-invalid': submitted && f['billName'].errors }">
+                  <option disabled="disabled" selected="selected">Choose option</option>
+                  <option>Cleaning</option>
+                  <option>Electricity</option>
+                  <option>Gas</option>
+                  <option>Water</option>
+                </select>
+                <div *ngIf="submitted && f['billName'].errors" class="invalid-feedback">
+                  <div *ngIf="f['billName'].errors['required']">Bill Name is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="name">Bill Amount</div>
+            <div class="value">
+              <div class="input-group">
+                <input class="input--style-5" type="number" id="billAmount" name="billAmount" class="form-control"
+                       formControlName="billAmount" [(ngModel)]="utilityBillModel.billAmount" required
+                       [ngClass]="{ 'is-invalid': submitted && f['billAmount'].errors }">
+                <div *ngIf="submitted && f['billAmount'].errors" class="invalid-feedback">
+                  <div *ngIf="f['billAmount'].errors['required']">Bill Amount is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn--radius-2 btn--green" type="submit">Add</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

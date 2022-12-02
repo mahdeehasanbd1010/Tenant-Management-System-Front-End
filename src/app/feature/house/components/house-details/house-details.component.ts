@@ -17,9 +17,7 @@ export class HouseDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     let homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
-    console.log(homeownerUserName);
     this.houseId = this.route.snapshot.paramMap.get('houseId');
-    console.log(this.houseId);
     this.houseDetailsService.getAllFlatInfo(homeownerUserName, this.houseId).subscribe({
       next: (response: any) => {
         if (response) {

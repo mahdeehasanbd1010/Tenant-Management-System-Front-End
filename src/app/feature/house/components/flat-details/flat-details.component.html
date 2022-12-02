@@ -1,1 +1,174 @@
-<p>flat-details works!</p>
+
+<div class="container-xl px-4 mt-4">
+  <!-- Flat Details page navigation-->
+  <nav class="nav nav-borders">
+    <a class="nav-link active ms-0" [href]="'house/details/'+houseId+'/flat/'+flatId">Flat Details</a>
+    <a class="nav-link" [href]="'house/details/'+houseId+'/flat/'+flatId+'/utilitiesBills'">Utilities Bills</a>
+  </nav>
+  <hr class="mt-0 mb-4">
+  <div class="row">
+    <div class="col-xl-8">
+      <!-- flat details card-->
+      <div class="card mb-4">
+        <div class="card-header">Flat {{flat?.FlatId}}</div>
+        <div class="card-body">
+          <div *ngIf="!isEditable">
+            <form>
+              <!-- Form Group (flat id)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputFlatId">Flat Id </label>
+                <input class="form-control" id="outputFlatId" type="text"
+                       [value]="flat?.FlatId" [disabled]="!isEditable">
+              </div>
+              <!-- Form Group (house id)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputHouseId">House Id </label>
+                <input class="form-control" id="outputHouseId" type="text"
+                       [value]="flat?.HouseId" [disabled]="true">
+              </div>
+              <!-- Form Group (floor number)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputFloorNumber">Floor Number </label>
+                <input class="form-control" id="outputFloorNumber" type="text"
+                       [value]="flat?.FloorNumber" [disabled]="!isEditable">
+              </div>
+              <!-- Form Row-->
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (number of room)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="outputNumberOfRoom">Number of Room</label>
+                  <input class="form-control" id="outputNumberOfRoom" type="text"
+                         [value]="flat?.NumberOfRoom" [disabled]="!isEditable">
+                </div>
+                <!-- Form Group (number of washroom)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="outputNumberOfWashroom">Number of Washroom</label>
+                  <input class="form-control" id="outputNumberOfWashroom" type="text"
+                         [value]="flat?.NumberOfWashroom" [disabled]="!isEditable">
+                </div>
+              </div>
+              <!-- Form Row-->
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (number of dining room)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="outputNumberOfDiningRoom">Number of Dining Room</label>
+                  <input class="form-control" id="outputNumberOfDiningRoom" type="text"
+                         [value]="flat?.NumberOfDiningRoom" [disabled]="!isEditable">
+                </div>
+                <!-- Form Group (number of drawing room)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="outputNumberOfDrawingRoom">Number of Drawing Room</label>
+                  <input class="form-control" id="outputNumberOfDrawingRoom" type="text"
+                         [value]="flat?.NumberOfDrawingRoom" [disabled]="!isEditable">
+                </div>
+              </div>
+              <!-- Form Row-->
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (number of balcony)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="outputNumberOfBalcony">Number of Balcony</label>
+                  <input class="form-control" id="outputNumberOfBalcony" type="text"
+                         [value]="flat?.NumberOfBalcony" [disabled]="!isEditable">
+                </div>
+                <!-- Form Group (number of kitchen)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="outputNumberOfKitchen">Number of Kitchen</label>
+                  <input class="form-control" id="outputNumberOfKitchen" type="text"
+                         [value]="flat?.NumberOfKitchen" [disabled]="!isEditable">
+                </div>
+              </div>
+              <!-- Form Group (rent)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputRent">Rent (Tk)</label>
+                <input class="form-control" id="outputRent" type="text"
+                       [value]="flat?.Rent" [disabled]="!isEditable">
+              </div>
+              <!-- Save changes button-->
+              <button *ngIf="!isEditable" (click)="onEdit()" class="btn btn-primary" type="button">Edit</button>
+            </form>
+          </div>
+
+          <div *ngIf="isEditable">
+            <form [formGroup]="form">
+              <!-- Form Group (flat id)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="flatId">Flat Id </label>
+                <input class="form-control" id="flatId" type="text" value="hello"
+                       name="flatId" formControlName="flatId">
+              </div>
+              <!-- Form Group (floor number)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="floorNumber">Floor Number </label>
+                <input class="form-control" id="floorNumber" type="number"
+                       name="floorNumber" formControlName="floorNumber">
+              </div>
+              <!-- Form Row-->
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (number of room)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="numberOfRoom">Number of Room</label>
+                  <input class="form-control" id="numberOfRoom" type="number"
+                         name="numberOfRoom" formControlName="numberOfRoom">
+                </div>
+                <!-- Form Group (number of washroom)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="numberOfWashroom">Number of Washroom</label>
+                  <input class="form-control" id="numberOfWashroom" type="number"
+                         name="numberOfWashroom" formControlName="numberOfWashroom">
+                </div>
+              </div>
+              <!-- Form Row-->
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (number of dining room)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="numberOfDiningRoom">Number of Dining Room</label>
+                  <input class="form-control" id="numberOfDiningRoom" type="number"
+                         name="numberOfDiningRoom" formControlName="numberOfDiningRoom">
+                </div>
+                <!-- Form Group (number of drawing room)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="numberOfDrawingRoom">Number of Drawing Room</label>
+                  <input class="form-control" id="numberOfDrawingRoom" type="number"
+                         name="numberOfDrawingRoom" formControlName="numberOfDrawingRoom">
+                </div>
+              </div>
+              <!-- Form Row-->
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (number of balcony)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="numberOfBalcony">Number of Balcony</label>
+                  <input class="form-control" id="numberOfBalcony" type="number"
+                         name="numberOfBalcony" formControlName="numberOfBalcony">
+                </div>
+                <!-- Form Group (number of kitchen)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="numberOfKitchen">Number of Kitchen</label>
+                  <input class="form-control" id="numberOfKitchen" type="number"
+                         name="numberOfKitchen" formControlName="numberOfKitchen">
+                </div>
+              </div>
+              <!-- Form Group (rent)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="rent">Rent (Tk) </label>
+                <input class="form-control" id="rent" type="number"
+                       name="rent" formControlName="rent">
+              </div>
+              <!-- Save changes button-->
+              <button *ngIf="isEditable" (click)="onSaveChanges()" class="btn btn-primary" type="button">Save Changes</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+      <!-- Billing card 1-->
+      <div class="card h-100 border-start-lg border-start-primary">
+        <div class="card-body">
+          <div class="small text-muted">Current monthly bill</div>
+          <div class="h3">{{flat?.Rent}} ৳ </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

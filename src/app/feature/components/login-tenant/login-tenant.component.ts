@@ -53,6 +53,7 @@ export class LoginTenantComponent implements OnInit {
         console.log(data);
         localStorage.setItem("jwt", token);
         localStorage.setItem("userDetails", JSON.stringify(data));
+        localStorage.setItem("userType", data.UserType);
         if(response.UserType == "Tenant"){
           window.location.assign("tenant/tenant-form");
         }

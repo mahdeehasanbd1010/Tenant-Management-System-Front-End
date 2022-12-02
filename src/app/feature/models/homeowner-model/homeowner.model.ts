@@ -6,4 +6,5 @@ export class HomeownerModel {
   phoneNumber!:string;
   password!:string;
   houseList:any = [];
+  userType:string = "Homeowner"
 }

@@ -5,7 +5,6 @@ export class FlatModel {
   houseId!:string;
   homeownerUserName!:string;
   floorNumber!:number;
-  isRent:boolean = false;
   numberOfRoom!:number;
   numberOfWashroom!:number;
   numberOfDiningRoom!:number;
@@ -13,5 +12,8 @@ export class FlatModel {
   numberOfBalcony!:number;
   numberOfKitchen!:number;
   rent!:number;
-  tenantId!:string;
+  tenantUserName:string = "";
+  isRent:boolean = false;
+  isRentRequest:boolean = false;
+  utilityBillList: any = []
 }

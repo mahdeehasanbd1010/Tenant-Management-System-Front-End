@@ -14,6 +14,7 @@ export const environment = {
     measurementId: "G-CE3FK7Q4XN"
   },
   baseUrl:"https://localhost:9000/api/",
+  allowedDomains: "https://localhost:9000",
 };
 
 /*

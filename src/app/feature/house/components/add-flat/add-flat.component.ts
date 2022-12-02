@@ -91,7 +91,6 @@ export class AddFlatComponent implements OnInit {
 
   addHouseId(){
     this.flatModel.houseId = this.houseId as string;
-    this.flatModel.tenantId = ""
   }
 
 }

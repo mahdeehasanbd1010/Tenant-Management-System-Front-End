@@ -6,6 +6,8 @@ import {HouseDetailsComponent} from "./components/house-details/house-details.co
 import {AddHouseComponent} from "./components/add-house/add-house.component";
 import {AddFlatComponent} from "./components/add-flat/add-flat.component";
 import {FlatDetailsComponent} from "./components/flat-details/flat-details.component";
+import {UtilityBillComponent} from "./components/utility-bill/utility-bill.component";
+import {AddUtilityBillComponent} from "./components/add-utility-bill/add-utility-bill.component";
 
 
 const routes: Routes = [
@@ -32,6 +34,16 @@ const routes: Routes = [
   {
     path:'details/:houseId/flat/:flatId',
     component: FlatDetailsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path:'details/:houseId/flat/:flatId/utilitiesBills',
+    component: UtilityBillComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path:'details/:houseId/flat/:flatId/utilitiesBills/add',
+    component: AddUtilityBillComponent,
     canActivate: [AuthGuardService]
   }
 ];

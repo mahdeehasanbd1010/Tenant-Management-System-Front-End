@@ -1,0 +1,72 @@
+<div class="container-xl px-4 mt-4">
+  <!-- Utilities Bills page navigation-->
+  <nav class="nav nav-borders">
+    <a class="nav-link" [href]="'house/details/'+houseId+'/flat/'+flatId">Flat Details</a>
+    <a class="nav-link active" [href]="'house/details/'+houseId+'/flat/'+flatId+'/utilitiesBills'">Utilities Bills</a>
+  </nav>
+  <hr class="mt-0 mb-4">
+  <div class="row">
+
+    <div class="col-lg-4 mb-4">
+      <!-- Add Bill Card-->
+      <div class="card h-100 border-start-lg border-start-add">
+        <div class="card-body align-items-center">
+          <div class="h3">Add Bill</div>
+          <a [href]="'house/details/'+houseId+'/flat/'+flatId+'/utilitiesBills/add'">
+            <div class="card-text"><i class="fa fa-5x fa-plus-circle" aria-hidden="true"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let utilityBill of utilityBillList" class="col-lg-4 mb-4">
+      <!-- Billing card 2-->
+      <div class="card h-100 border-start-lg border-start-secondary">
+        <div class="card-body">
+          <div class="small text-muted">utility bill</div>
+          <div class="h3">{{utilityBill?.BillName}} Bill</div>
+          <div class="h3">{{utilityBill?.BillAmount}} ৳</div>
+          <a class="text-arrow-icon small text-secondary" href="#!">
+            View payment history
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-arrow-right">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bill in Tabular Form-->
+  <div class="row">
+    <div class="col-lg-10 card mb-4">
+      <div class="card-header">Tabular Form</div>
+      <div class="card-body p-0">
+        <!-- Billing history table-->
+        <div class="table-responsive table-billing-history">
+          <table class="table mb-0">
+            <thead>
+            <tr>
+              <th class="border-gray-200" scope="col">Bill Name</th>
+              <th class="border-gray-200" scope="col">Bill Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let utilityBill of utilityBillList">
+              <td>{{utilityBill?.BillName}}</td>
+              <td>{{utilityBill?.BillAmount}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

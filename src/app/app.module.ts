@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import {CoreModule} from "./core/core.module";
 import {FeatureModule} from "./feature/feature.module";
 import {HouseModule} from "./feature/house/house.module";
+import {ProfileModule} from "./feature/profile/profile.module";
+import {environment} from "../environments/environment";
 
 export function tokenGetter(){
   return localStorage.getItem("jwt");
@@ -22,10 +24,11 @@ export function tokenGetter(){
     CoreModule,
     FeatureModule,
     HouseModule,
+    ProfileModule,
     JwtModule.forRoot({
       config:{
         tokenGetter: tokenGetter,
-        allowedDomains: ["https://localhost:9000"],
+        allowedDomains: [environment.allowedDomains],
         disallowedRoutes: []
       }
     })

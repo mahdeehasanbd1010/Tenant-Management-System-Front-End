@@ -75,6 +75,10 @@ body{margin-top:20px;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 }
 
+.border-start-add {
+  border-left-color: #000000 !important;
+}
+
 .border-start-primary {
   border-left-color: #0061f2 !important;
 }

@@ -9,4 +9,6 @@ export const environment = {
     appId: "1:556029321926:web:80feb9752a373fbd182dc7",
     measurementId: "G-CE3FK7Q4XN"
   },
+  baseUrl:"https://localhost:9000/api/",
+  allowedDomains: "https://localhost:9000",
 };

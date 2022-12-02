@@ -8,22 +8,64 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link {{containKeyWord('')?'active':''}}" aria-current="page" href="/">Home</a>
-        <a class="nav-link {{containKeyWord('house')?'active':''}}" href="house">House</a>
-        <a class="nav-link {{containKeyWord('about')?'active':''}}" href="#">About</a>
-        <a class="nav-link {{containKeyWord('help')?'active':''}}" href="#" tabindex="-1">Help</a>
+      <div *ngIf="!isAuthenticateUser">
+        <div class="navbar-nav">
+          <a class="nav-link {{containKeyWord('')?'active':''}}" aria-current="page" href="/">Home</a>
+          <a class="nav-link {{containKeyWord('about')?'active':''}}" href="#">About</a>
+          <a class="nav-link {{containKeyWord('help')?'active':''}}" href="#" tabindex="-1">Help</a>
+        </div>
       </div>
+      <div *ngIf="userType === 'Homeowner' && isAuthenticateUser">
+        <div class="navbar-nav">
+          <a class="nav-link {{containKeyWord('')?'active':''}}" aria-current="page" href="/">Home</a>
+          <a class="nav-link {{containKeyWord('house')?'active':''}}" href="house">House</a>
+          <a class="nav-link {{containKeyWord('transaction')?'active':''}}" href="#">Transaction</a>
+          <a class="nav-link {{containKeyWord('about')?'active':''}}" href="#">About</a>
+          <a class="nav-link {{containKeyWord('help')?'active':''}}" href="#" tabindex="-1">Help</a>
+        </div>
+      </div>
+      <div *ngIf="userType === 'Tenant' && isAuthenticateUser">
+        <div class="navbar-nav">
+          <a class="nav-link {{containKeyWord('')?'active':''}}" aria-current="page" href="/">Home</a>
+          <a class="nav-link {{containKeyWord('house')?'active':''}}" href="">Complaint Box</a>
+          <a class="nav-link {{containKeyWord('transaction')?'active':''}}" href="#">Transaction</a>
+          <a class="nav-link {{containKeyWord('about')?'active':''}}" href="#">About</a>
+          <a class="nav-link {{containKeyWord('help')?'active':''}}" href="#" tabindex="-1">Help</a>
+        </div>
+      </div>
+
     </div>
+
     <div *ngIf="!isAuthenticateUser">
       <button class="btn btn--green" [routerLink]="['login']">Login</button>
       <button class="btn btn--green" [routerLink]="['sign-up']">Sign Up</button>
     </div>
     <div *ngIf="isAuthenticateUser">
-      <i class="fa-lg fa-solid fa-user"></i>
-      <span class="avatar" [innerHTML]="userIcon"></span>
-      <button class="btn btn--red" (click)="logout()">Logout</button>
+      <form class="d-flex flex-row logged-user align-items-center">
+        <div class="btn-group">
+          <button class="dropdown show d-flex align-items-center justify-content-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown-button">
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </div>
+          </button>
+          <ul class="dropdown-menu">
+            <div *ngIf="userType === 'Homeowner'">
+              <li><a class="dropdown-item" href="profile/homeowner">Profile</a></li>
+            </div>
+            <div *ngIf="userType === 'Tenant'">
+              <li><a class="dropdown-item" href="profile/tenant">Profile</a></li>
+            </div>
+            <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
+        <span class="avatar" [innerHTML]="userIcon"></span>
+        <div class="d-flex flex-column wrapper">
+          <span class="user-name">{{ userDetails.FullName }}</span>
+          <span class="user-email">{{ userDetails.Email}}</span>
+        </div>
+      </form>
     </div>
   </div>
 </nav>

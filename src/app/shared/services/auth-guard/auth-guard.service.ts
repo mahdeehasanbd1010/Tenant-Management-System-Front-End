@@ -12,7 +12,7 @@ export class AuthGuardService implements CanActivate{
               private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const token = localStorage.getItem("jwt");
+    const token: any = localStorage.getItem("jwt");
     if(token && !this.jwtHelperService.isTokenExpired(token)){
       return true;
     }

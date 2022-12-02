@@ -1,0 +1,96 @@
+
+<div class="container-xl px-4 mt-4">
+  <!-- Profile Details page navigation-->
+  <nav class="nav nav-borders">
+    <a class="nav-link active ms-0" href="profile/homeowner">Personal Details</a>
+    <a class="nav-link" href="#">Rent Requests</a>
+  </nav>
+  <hr class="mt-0 mb-4">
+  <div class="row">
+    <div class="col-xl-8">
+      <!-- personal details card-->
+      <div class="card mb-4">
+        <div class="card-header">{{homeowner?.FullName}}'s Info</div>
+        <div class="card-body">
+          <div *ngIf="!isEditable">
+            <form>
+              <!-- Form Group (homeowner id)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputHomeownerId">Id</label>
+                <input class="form-control" id="outputHomeownerId" type="text"
+                       [value]="homeowner?.Id" [disabled]="true">
+              </div>
+              <!-- Form Group (username)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputUsername">Username</label>
+                <input class="form-control" id="outputUsername" type="text"
+                       [value]="homeowner?.UserName" [disabled]="!isEditable">
+              </div>
+              <!-- Form Group (full name)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputFullName">Full Name </label>
+                <input class="form-control" id="outputFullName" type="text"
+                       [value]="homeowner?.FullName" [disabled]="!isEditable">
+              </div>
+              <!-- Form Group (email)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputEmail">Email</label>
+                <input class="form-control" id="outputEmail" type="text"
+                       [value]="homeowner?.Email" [disabled]="!isEditable">
+              </div>
+              <!-- Form Group (phone number)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputPhoneNumber">Phone Number</label>
+                <input class="form-control" id="outputPhoneNumber" type="text"
+                       [value]="homeowner?.PhoneNumber" [disabled]="!isEditable">
+              </div>
+              <!-- Edit button-->
+              <button *ngIf="!isEditable" (click)="onEdit()" class="btn btn-primary" type="button">Edit</button>
+            </form>
+          </div>
+
+          <div *ngIf="isEditable">
+            <form [formGroup]="form">
+              <!-- Form Group (username)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="userName">Username</label>
+                <input class="form-control" id="userName" type="text"
+                       name="userName" formControlName="userName">
+              </div>
+              <!-- Form Group (full name)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="fullName">Full Name </label>
+                <input class="form-control" id="fullName" type="text"
+                       name="fullName" formControlName="fullName">
+              </div>
+              <!-- Form Group (email)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="email">Email</label>
+                <input class="form-control" id="email" type="text"
+                       name="email" formControlName="email">
+              </div>
+              <!-- Form Group (phone number)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="phoneNumber">Phone Number</label>
+                <input class="form-control" id="phoneNumber" type="text"
+                       name="phoneNumber" formControlName="phoneNumber">
+              </div>
+              <!-- Save changes button-->
+              <button *ngIf="isEditable" (click)="onSaveChanges()" class="btn btn-primary" type="button">Save Changes</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+      <!-- Billing card 1-->
+      <div class="card h-100 border-start-lg border-start-primary">
+        <div class="card-body">
+          <div class="text-muted h3">Current House Number</div>
+          <div class="h4"> {{currentHouseNumber}} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

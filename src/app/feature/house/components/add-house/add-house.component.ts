@@ -57,7 +57,7 @@ export class AddHouseComponent implements OnInit {
         alert(err.message);
         console.log(err.message);
       }
-    })
+    });
   }
 
   addHomeownerUserName(){

@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path:'house',
     loadChildren: () => import('./feature/house/house.module').then(m => m.HouseModule)
+  },
+  {
+    path:'profile',
+    loadChildren: () => import('./feature/profile/profile.module').then(m => m.ProfileModule)
   }
 ];
 

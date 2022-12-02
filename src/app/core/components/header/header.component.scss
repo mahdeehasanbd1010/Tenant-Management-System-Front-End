@@ -1,3 +1,6 @@
+$font-light: #fff;
+$primary-color: #175CFF;
+
 .avatar {
   width: 40px;
   height: 40px;
@@ -8,3 +11,54 @@
   line-height: 20px;
   margin: 0px 0;
 }
+
+
+.logged-user {
+  color: white;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #512DA8;
+    font-size: 1.5em;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    margin: 0px 0;
+  }
+
+  .wrapper {
+    margin: 0 10px;
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .user-email {
+      font-size: 12px;
+      color: $font-light;
+    }
+  }
+
+  .dropdown {
+    height: 30px;
+    width: 30px;
+    border: 1px solid $font-light;
+    border-radius: 20px;
+    margin-right: 10px;
+
+    .dropdown-menu {
+      top: 30px;
+
+    }
+
+    .dropdown-button {
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+    }
+  }
+}
+
