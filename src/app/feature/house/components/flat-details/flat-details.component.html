@@ -83,7 +83,7 @@
                 <input class="form-control" id="outputRent" type="text"
                        [value]="flat?.Rent" [disabled]="!isEditable">
               </div>
-              <!-- Save changes button-->
+              <!-- Edit button-->
               <button *ngIf="!isEditable" (click)="onEdit()" class="btn btn-primary" type="button">Edit</button>
             </form>
           </div>
@@ -93,7 +93,7 @@
               <!-- Form Group (flat id)-->
               <div class="mb-3">
                 <label class="small mb-1" for="flatId">Flat Id </label>
-                <input class="form-control" id="flatId" type="text" value="hello"
+                <input class="form-control" id="flatId" type="text"
                        name="flatId" formControlName="flatId">
               </div>
               <!-- Form Group (floor number)-->
@@ -154,7 +154,7 @@
                        name="rent" formControlName="rent">
               </div>
               <!-- Save changes button-->
-              <button *ngIf="isEditable" (click)="onSaveChanges()" class="btn btn-primary" type="button">Save Changes</button>
+              <button *ngIf="isEditable" (click)="onSaveChanges()" class="btn btn-success" type="button">Save Changes</button>
             </form>
           </div>
 
@@ -167,6 +167,26 @@
         <div class="card-body">
           <div class="small text-muted">Current monthly bill</div>
           <div class="h3">{{flat?.Rent}} ৳ </div>
+        </div>
+      </div>
+      <div *ngIf="!flat?.IsRent">
+        <div class="card h-100 border-start-lg border-start-secondary">
+          <div class="card-body">
+            <div class="small text-muted">Empty Flat</div>
+            <div class="h3">No Current Tenant</div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="flat?.IsRent">
+        <div class="card h-100 border-start-lg border-start-secondary">
+          <div class="card-body">
+            <div class="small text-muted">{{flat?.TenantUserName}}</div>
+            <div class="h3">Current Tenant</div>
+            <a class="text-arrow-icon small" [href]="'house/tenantDetails/'+flat?.TenantUserName+'/'+1">
+              Switch to Tenant Details
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>

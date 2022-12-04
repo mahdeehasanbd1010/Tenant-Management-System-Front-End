@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UtilityBillModel} from "../../models/utility-bill.model";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AddUtilityBillService} from "../../services/add-utility-bill/add-utility-bill.service";
+import {UserTypeService} from "../../../../shared/services/user-type/user-type.service";
 
 @Component({
   selector: 'app-add-utility-bill',
@@ -24,14 +25,20 @@ export class AddUtilityBillComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder,
-              private addUtilityBillService: AddUtilityBillService) { }
+              private addUtilityBillService: AddUtilityBillService,
+              private userTypeService: UserTypeService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.submitted = false;
-    this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
-    this.houseId = this.route.snapshot.paramMap.get('houseId');
-    this.flatId = this.route.snapshot.paramMap.get('flatId');
-    this.validateTheFormField();
+    if(this.userTypeService.isHomeowner()){
+      this.submitted = false;
+      this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
+      this.houseId = this.route.snapshot.paramMap.get('houseId');
+      this.flatId = this.route.snapshot.paramMap.get('flatId');
+      this.validateTheFormField();
+    }else{
+      this.router.navigate([""]);
+    }
   }
 
   validateTheFormField(){

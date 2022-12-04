@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HomeownerProfileService} from "../../services/homeowner-profile/homeowner-profile.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HomeownerModel} from "../../../models/homeowner-model/homeowner.model";
-import {ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
+import {UserTypeService} from "../../../../shared/services/user-type/user-type.service";
 
 @Component({
   selector: 'app-homeowner-profile',
@@ -18,21 +19,22 @@ export class HomeownerProfileComponent implements OnInit {
 
   homeowner: any;
   homeownerUserName!: string;
-  userType!: string;
 
   form!: FormGroup;
 
   constructor(private homeownerProfileService: HomeownerProfileService,
               private formBuilder:FormBuilder,
-              private route: ActivatedRoute) { }
+              private userTypeService: UserTypeService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
-    this.userType = localStorage.getItem('userType') as string;
-    if(this.userType !== "Homeowner"){
-      window.location.assign("");
+    if(this.userTypeService.isHomeowner()){
+      this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
+      this.getHomeownerInfo();
+    } else {
+      this.router.navigate([""]);
     }
-    this.getHomeownerInfo();
+
   }
 
   getHomeownerInfo(){
@@ -78,7 +80,7 @@ export class HomeownerProfileComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.isEditable = true;
+    this.isEditable = false;
     this.updatedHomeowner = this.form.value;
     console.log(this.updatedHomeowner);
     this.homeownerProfileService.updateHomeownerInfo(this.homeownerUserName, this.updatedHomeowner).subscribe({

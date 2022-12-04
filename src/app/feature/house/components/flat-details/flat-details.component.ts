@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FlatDetailsService} from "../../services/flat-details/flat-details.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FlatModel} from "../../models/flat.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserTypeService} from "../../../../shared/services/user-type/user-type.service";
 
 @Component({
   selector: 'app-flat-details',
@@ -23,13 +24,23 @@ export class FlatDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private formBuilder:FormBuilder,
-              private flatDetailsService: FlatDetailsService) { }
+              private flatDetailsService: FlatDetailsService,
+              private userTypeService: UserTypeService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
-    this.houseId = this.route.snapshot.paramMap.get('houseId');
-    this.flatId = this.route.snapshot.paramMap.get('flatId');
+    if(this.userTypeService.isHomeowner()){
+      this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
+      this.houseId = this.route.snapshot.paramMap.get('houseId');
+      this.flatId = this.route.snapshot.paramMap.get('flatId');
+      this.isEditable = false;
+      this.getFLatDetails();
+    }else{
+     this.router.navigate([""]);
+    }
+  }
 
+  getFLatDetails(){
     this.flatDetailsService.getFlatInfo(this.homeownerUserName, this.houseId, this.flatId).subscribe({
       next: (response: any) => {
         if (response) {
@@ -43,6 +54,7 @@ export class FlatDetailsComponent implements OnInit {
       }
     });
   }
+
 
   initiateValidateTheFormField(){
 
@@ -61,7 +73,8 @@ export class FlatDetailsComponent implements OnInit {
         rent: [this.flat.Rent, Validators.required],
         tenantUserName:[this.flat.tenantUserName==null?"":this.flat.tenantUserName],
         isRent:[this.flat.IsRent, Validators.required],
-        isRentRequest:[this.flat.IsRentRequest, Validators.required]
+        isRentRequest:[this.flat.IsRentRequest, Validators.required],
+        utilityBillList:[this.flat.UtilityBillList, Validators.required]
       }
     );
   }

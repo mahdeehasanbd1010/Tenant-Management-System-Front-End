@@ -16,6 +16,8 @@ import {HouseDetailsService} from "./services/house-details/house-details.servic
 import {FlatDetailsService} from "./services/flat-details/flat-details.service";
 import { UtilityBillComponent } from './components/utility-bill/utility-bill.component';
 import { AddUtilityBillComponent } from './components/add-utility-bill/add-utility-bill.component';
+import { RentRequestComponent } from './components/rent-request/rent-request.component';
+import { TenantDetailsComponent } from './components/tenant-details/tenant-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { AddUtilityBillComponent } from './components/add-utility-bill/add-utili
     FlatDetailsComponent,
     UtilityBillComponent,
     AddUtilityBillComponent,
+    RentRequestComponent,
+    TenantDetailsComponent,
   ],
   imports: [
     CommonModule,

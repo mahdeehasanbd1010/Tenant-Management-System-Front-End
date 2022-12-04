@@ -21,6 +21,7 @@ export class SignUpTenantComponent implements OnInit {
   form: FormGroup = new FormGroup({
     fullName: new FormControl(''),
     flatId: new FormControl(''),
+    houseId: new FormControl(''),
     homeownerUsername: new FormControl(''),
     username: new FormControl(''),
     email: new FormControl(''),
@@ -50,6 +51,7 @@ export class SignUpTenantComponent implements OnInit {
       {
         fullName: ['', Validators.required],
         flatId: ['', Validators.required],
+        houseId: ['', Validators.required],
         homeownerUsername: ['', Validators.required],
         username: [
           '',
@@ -84,6 +86,7 @@ export class SignUpTenantComponent implements OnInit {
 
   onSubmit(): void {
     console.log('onSubmit');
+    console.log(this.form.invalid)
     this.submitted = true;
     if (this.form.invalid) {
       return;
@@ -103,13 +106,14 @@ export class SignUpTenantComponent implements OnInit {
     }, (error: any)=>{
       alert(error.message);
       console.log(error);
-    })
+    });
 
   }
 
   convertModelToTenant(){
     this.tenant.fullName = this.tenantSignUpModel.fullName;
     this.tenant.flatId = this.tenantSignUpModel.flatId;
+    this.tenant.houseId = this.tenantSignUpModel.houseId;
     this.tenant.homeownerUsername = this.tenantSignUpModel.homeownerUsername;
     this.tenant.username = this.tenantSignUpModel.username;
     this.tenant.email = this.tenantSignUpModel.email;

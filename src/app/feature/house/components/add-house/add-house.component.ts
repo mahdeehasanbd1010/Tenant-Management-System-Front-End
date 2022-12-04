@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HouseModel} from "../../models/house.model";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AddHouseService} from "../../services/add-house/add-house.service";
+import {Router} from "@angular/router";
+import {UserTypeService} from "../../../../shared/services/user-type/user-type.service";
 
 @Component({
   selector: 'app-add-house',
@@ -20,11 +22,17 @@ export class AddHouseComponent implements OnInit {
   });
 
   constructor(private formBuilder:FormBuilder,
-              private addHouseService: AddHouseService) { }
+              private addHouseService: AddHouseService,
+              private userTypeService: UserTypeService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.submitted = false;
-    this.validateTheFormField();
+    if(this.userTypeService.isHomeowner()){
+      this.submitted = false;
+      this.validateTheFormField();
+    }else{
+      this.router.navigate([""]);
+    }
   }
 
   validateTheFormField(){

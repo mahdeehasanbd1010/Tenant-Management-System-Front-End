@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FlatModel} from "../../models/flat.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AddFlatService} from "../../services/add-flat/add-flat.service";
+import {UserTypeService} from "../../../../shared/services/user-type/user-type.service";
 
 @Component({
   selector: 'app-add-flat',
@@ -29,17 +30,21 @@ export class AddFlatComponent implements OnInit {
   });
 
 
-  constructor(
-    private formBuilder:FormBuilder,
-    private route: ActivatedRoute,
-    private addFlatService: AddFlatService
-  ) { }
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private addFlatService: AddFlatService,
+              private userTypeService: UserTypeService,
+              private router: Router) {}
 
   ngOnInit(): void {
-    this.houseId = this.route.snapshot.paramMap.get('houseId');
-    console.log(this.houseId);
-    this.submitted = false;
-    this.validateTheFormField();
+    if(this.userTypeService.isHomeowner()){
+      this.houseId = this.route.snapshot.paramMap.get('houseId');
+      console.log(this.houseId);
+      this.submitted = false;
+      this.validateTheFormField();
+    }else{
+      this.router.navigate([""]);
+    }
   }
 
   validateTheFormField(){
@@ -92,5 +97,4 @@ export class AddFlatComponent implements OnInit {
   addHouseId(){
     this.flatModel.houseId = this.houseId as string;
   }
-
 }

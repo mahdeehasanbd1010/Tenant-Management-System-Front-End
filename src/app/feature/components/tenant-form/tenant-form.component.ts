@@ -2,6 +2,9 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TenantRegistrationFormModel} from "../../models/tenant-form-model/tenant-form.model";
 import {TenantFormService} from "../../services/tenant-form/tenant-form.service";
+import {Router} from "@angular/router";
+import {UserTypeService} from "../../../shared/services/user-type/user-type.service";
+import {SweetAlertService} from "../../../shared/services/sweet-alert/sweet-alert.service";
 
 @Component({
   selector: 'app-tenant-form',
@@ -18,6 +21,8 @@ export class TenantFormComponent implements OnInit {
   signatureUrl: string = '';
   formPageNo: number = 0;
 
+  userType!: string;
+
   uploadForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     fatherName: new FormControl(''),
@@ -33,7 +38,8 @@ export class TenantFormComponent implements OnInit {
     passportNumber: new FormControl(''),
     imageFile: new FormControl(''),
     signature: new FormControl(''),
-    date: new FormControl(''),
+
+    registrationDate: new FormControl(''),
 
     guardianName: new FormControl(''),
     relation: new FormControl(''),
@@ -58,12 +64,20 @@ export class TenantFormComponent implements OnInit {
   });
 
   constructor(private formBuilder: FormBuilder,
-              private tenantFormService: TenantFormService) {
+              private tenantFormService: TenantFormService,
+              private router: Router,
+              private userTypeService: UserTypeService,
+              private sweetAlertService: SweetAlertService) {
   }
 
   ngOnInit(): void {
-    this.formPageNo = 1;
-    this.validateTheFormField();
+    if(this.userTypeService.isTenant()){
+      this.formPageNo = 1;
+      this.validateTheFormField();
+    }
+    else{
+      this.router.navigate([""]);
+    }
   }
 
   validateTheFormField(){
@@ -116,7 +130,10 @@ export class TenantFormComponent implements OnInit {
       next: (response: any) => {
         if (response) {
           console.log(response);
-          window.location.assign("");
+          this.sweetAlertService.sweetAlert(
+            "Registration Successful",
+            "You are successfully registered!",
+            "success", "");
         }
       }, error: (error: any) => {
         alert(error.message);

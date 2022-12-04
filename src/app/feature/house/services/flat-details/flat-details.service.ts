@@ -18,4 +18,5 @@ export class FlatDetailsService {
   public updateFlatInfo(flatId: string, updatedFlat: FlatModel):Observable<any>{
     return this.http.post(environment.baseUrl+'house/updateFlat/' + flatId, updatedFlat);
   }
+
 }

@@ -8,6 +8,8 @@ import {AddFlatComponent} from "./components/add-flat/add-flat.component";
 import {FlatDetailsComponent} from "./components/flat-details/flat-details.component";
 import {UtilityBillComponent} from "./components/utility-bill/utility-bill.component";
 import {AddUtilityBillComponent} from "./components/add-utility-bill/add-utility-bill.component";
+import {RentRequestComponent} from "./components/rent-request/rent-request.component";
+import {TenantDetailsComponent} from "./components/tenant-details/tenant-details.component";
 
 
 const routes: Routes = [
@@ -44,6 +46,16 @@ const routes: Routes = [
   {
     path:'details/:houseId/flat/:flatId/utilitiesBills/add',
     component: AddUtilityBillComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path:"rentRequest",
+    component: RentRequestComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path:"tenantDetails/:tenantUserName/:pageNumber",
+    component: TenantDetailsComponent,
     canActivate: [AuthGuardService]
   }
 ];

@@ -1,5 +1,6 @@
 export class TenantRegistrationFormModel {
   userName!:string;
+  registrationDate!:string;
   personalInfo: PersonalInfo = new PersonalInfo();
   emergencyContact: EmergencyContact = new EmergencyContact();
   presentAddress: PresentAddress = new PresentAddress();
@@ -22,7 +23,6 @@ export class PersonalInfo{
   passportNumber!:string;
   imageFile!:string;
   signature!:string;
-  date!:string;
 }
 
 export class EmergencyContact{

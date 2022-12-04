@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UtilityBillService} from "../../services/utility-bill/utility-bill.service";
+import {UserTypeService} from "../../../../shared/services/user-type/user-type.service";
 
 @Component({
   selector: 'app-utility-bill',
@@ -15,14 +16,21 @@ export class UtilityBillComponent implements OnInit {
   utilityBillList: any = [];
 
   constructor(private route: ActivatedRoute,
-              private utilityBillService: UtilityBillService) { }
+              private utilityBillService: UtilityBillService,
+              private userTypeService: UserTypeService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
-    this.houseId = this.route.snapshot.paramMap.get('houseId');
-    this.flatId = this.route.snapshot.paramMap.get('flatId');
+    if(this.userTypeService.isHomeowner()){
+      this.homeownerUserName = JSON.parse(localStorage.getItem('userDetails') as string).UserName;
+      this.houseId = this.route.snapshot.paramMap.get('houseId');
+      this.flatId = this.route.snapshot.paramMap.get('flatId');
 
-    this.getUtilityBillList();
+      this.getUtilityBillList();
+    }else {
+      this.router.navigate([""]);
+    }
+
   }
 
   getUtilityBillList(){

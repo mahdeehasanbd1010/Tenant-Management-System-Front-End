@@ -2,46 +2,58 @@
 <div class="container-xl px-4 mt-4">
   <!-- Profile Details page navigation-->
   <nav class="nav nav-borders">
-    <a class="nav-link active ms-0" href="profile/homeowner">Account Details</a>
+    <a class="nav-link active ms-0" href="profile/tenant">Account Details</a>
   </nav>
   <hr class="mt-0 mb-4">
   <div class="row">
-    <div class="col-xl-8">
+    <div class="col-xl-12">
       <!-- account details card-->
       <div class="card mb-4">
-        <div class="card-header">{{homeowner?.FullName}}'s Info</div>
+        <div class="card-header">{{tenant?.FullName}}'s Info</div>
         <div class="card-body">
           <div *ngIf="!isEditable">
             <form>
-              <!-- Form Group (homeowner id)-->
+              <!-- Form Group (tenant id)-->
               <div class="mb-3">
                 <label class="small mb-1" for="outputHomeownerId">Id</label>
                 <input class="form-control" id="outputHomeownerId" type="text"
-                       [value]="homeowner?.Id" [disabled]="true">
+                       [value]="tenant?.Id" [disabled]="true">
+              </div>
+              <!-- Form Group (house id)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputHouseId">House Id</label>
+                <input class="form-control" id="outputHouseId" type="text"
+                       [value]="tenant?.HouseId" [disabled]="true">
+              </div>
+              <!-- Form Group (flat id)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="outputFlatId">Flat Id</label>
+                <input class="form-control" id="outputFlatId" type="text"
+                       [value]="tenant?.FlatId" [disabled]="true">
               </div>
               <!-- Form Group (username)-->
               <div class="mb-3">
                 <label class="small mb-1" for="outputUsername">Username</label>
                 <input class="form-control" id="outputUsername" type="text"
-                       [value]="homeowner?.UserName" [disabled]="true">
+                       [value]="tenant?.UserName" [disabled]="true">
               </div>
               <!-- Form Group (full name)-->
               <div class="mb-3">
                 <label class="small mb-1" for="outputFullName">Full Name </label>
                 <input class="form-control" id="outputFullName" type="text"
-                       [value]="homeowner?.FullName" [disabled]="!isEditable">
+                       [value]="tenant?.FullName" [disabled]="!isEditable">
               </div>
               <!-- Form Group (email)-->
               <div class="mb-3">
                 <label class="small mb-1" for="outputEmail">Email</label>
                 <input class="form-control" id="outputEmail" type="text"
-                       [value]="homeowner?.Email" [disabled]="!isEditable">
+                       [value]="tenant?.Email" [disabled]="!isEditable">
               </div>
               <!-- Form Group (phone number)-->
               <div class="mb-3">
                 <label class="small mb-1" for="outputPhoneNumber">Phone Number</label>
                 <input class="form-control" id="outputPhoneNumber" type="text"
-                       [value]="homeowner?.PhoneNumber" [disabled]="!isEditable">
+                       [value]="tenant?.PhoneNumber" [disabled]="!isEditable">
               </div>
               <!-- Edit button-->
               <button *ngIf="!isEditable" (click)="onEdit()" class="btn btn-primary" type="button">Edit</button>
@@ -72,18 +84,17 @@
               <button *ngIf="isEditable" (click)="onSaveChanges()" class="btn btn-success" type="button">Save Changes</button>
             </form>
           </div>
-
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mb-4">
-      <!-- Billing card 1-->
-      <div class="card h-100 border-start-lg border-start-primary">
-        <div class="card-body">
-          <div class="text-muted h3">Current House Number</div>
-          <div class="h4"> {{currentHouseNumber}} </div>
-        </div>
-      </div>
-    </div>
+<!--    <div class="col-lg-4 mb-4">-->
+<!--      &lt;!&ndash; Billing card 1&ndash;&gt;-->
+<!--      <div class="card h-100 border-start-lg border-start-primary">-->
+<!--        <div class="card-body">-->
+<!--          <div class="text-muted h3">Current House Number</div>-->
+<!--          <div class="h4"> {{currentHouseNumber}} </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>

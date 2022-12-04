@@ -17,4 +17,8 @@ export class TenantAuthService {
     return this.http.post(environment.baseUrl+'tenantAuth/login', loginModel);
   }
 
+  getTenantInformation(tenantUsername: any): Observable<any>{
+    return this.http.get(environment.baseUrl+'tenantAuth/getTenantByUsername/' + tenantUsername);
+  }
+
 }

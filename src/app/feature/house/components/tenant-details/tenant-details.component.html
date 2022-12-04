@@ -1,0 +1,316 @@
+<div class="container-xl px-4 mt-4">
+  <!-- House Details page navigation-->
+  <nav class="nav nav-borders">
+    <a class="nav-link ms-0 {{pageNumber===1?'active': ''}}" [href]="'house/tenantDetails/'+tenantUserName+'/'+1">Personal
+      Info</a>
+    <a class="nav-link ms-0 {{pageNumber===2?'active': ''}}" [href]="'house/tenantDetails/'+tenantUserName+'/'+2">Present
+      Address</a>
+    <a class="nav-link ms-0 {{pageNumber===3?'active': ''}}" [href]="'house/tenantDetails/'+tenantUserName+'/'+3">Emergency
+      Contact</a>
+    <a class="nav-link ms-0 {{pageNumber===4?'active': ''}}" [href]="'house/tenantDetails/'+tenantUserName+'/'+4">Diver
+      Info</a>
+    <a class="nav-link ms-0 {{pageNumber===5?'active': ''}}" [href]="'house/tenantDetails/'+tenantUserName+'/'+5">Housekeeper
+      Info</a>
+  </nav>
+  <hr class="mt-0 mb-4">
+
+  <div *ngIf="pageNumber===1" class="row">
+    <div class="col-xl-12">
+      <!-- personal info card-->
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="d-flex justify-content-center flex-row">
+            <!-- header card-->
+            <div>Personal Info</div>
+          </div>
+          <!-- Profile picture card-->
+          <div class="mb-3 float-end">
+            <div class="d-flex flex-column">
+              <img class="img-thumbnail rounded mx-auto d-block img-account-profile" id="image"
+                   [src]="tenantRegistrationForm?.PersonalInfo?.ImageFile" alt="">
+              <label class="small mb-1 text-center" for="image">picture</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Form Group (name)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="name">Name </label>
+              <input class="form-control" id="name" type="text"
+                     [value]="tenantRegistrationForm?.PersonalInfo?.Name" [disabled]="true">
+            </div>
+            <!-- Form Group (address)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="fatherName"> Father Name </label>
+              <input class="form-control" id="fatherName" type="text"
+                     [value]="tenantRegistrationForm?.PersonalInfo?.FatherName" [disabled]="true">
+            </div>
+            <!-- Form Row-->
+            <div class="row gx-3 mb-3">
+              <!-- Form Group (date of birth)-->
+              <div class="col-md-6">
+                <label class="small mb-1" for="dateOfBirth">Date of Birth</label>
+                <input class="form-control" id="dateOfBirth" type="date"
+                       [value]="tenantRegistrationForm?.PersonalInfo?.DateOfBirth" [disabled]="true">
+              </div>
+              <!-- Form Group (marital status)-->
+              <div class="col-md-6">
+                <label class="small mb-1" for="maritalStatus">Marital Status</label>
+                <input class="form-control" id="maritalStatus" type="text"
+                       [value]="tenantRegistrationForm?.PersonalInfo?.MaritalStatus" [disabled]="true">
+              </div>
+            </div>
+            <!-- Form Group (permanent address)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="permanentAddress"> Permanent Address </label>
+              <input class="form-control" id="permanentAddress" type="text"
+                     [value]="tenantRegistrationForm?.PersonalInfo?.PermanentAddress" [disabled]="true">
+            </div>
+            <!-- Form Row-->
+            <div class="row gx-3 mb-3">
+              <!-- Form Group (occupation)-->
+              <div class="col-md-4">
+                <label class="small mb-1" for="occupation">Occupation</label>
+                <input class="form-control" id="occupation" type="text"
+                       [value]="tenantRegistrationForm?.PersonalInfo?.Occupation" [disabled]="true">
+              </div>
+              <!-- Form Group (Address Of The Institution Or Work Place)-->
+              <div class="col-md-8">
+                <label class="small mb-1" for="addressOfTheInstitutionOrWorkPlace">
+                  Address Of The Institution Or Work Place
+                </label>
+                <input class="form-control" id="addressOfTheInstitutionOrWorkPlace" type="text"
+                       [value]="tenantRegistrationForm?.PersonalInfo?.AddressOfTheInstitutionOrWorkPlace"
+                       [disabled]="true">
+              </div>
+            </div>
+            <!-- Form Row-->
+            <div class="row gx-3 mb-3">
+              <!-- Form Group (religion)-->
+              <div class="col-md-4">
+                <label class="small mb-1" for="religion">Religion</label>
+                <input class="form-control" id="religion" type="text"
+                       [value]="tenantRegistrationForm?.PersonalInfo?.Religion" [disabled]="true">
+              </div>
+              <!-- Form Group (phone number)-->
+              <div class="col-md-8">
+                <label class="small mb-1" for="phoneNumber">Phone Number</label>
+                <input class="form-control" id="phoneNumber" type="text"
+                       [value]="tenantRegistrationForm?.PersonalInfo?.PhoneNumber" [disabled]="true">
+              </div>
+            </div>
+            <!-- Form Group (email)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="email">Email </label>
+              <input class="form-control" id="email" type="text"
+                     [value]="tenantRegistrationForm?.PersonalInfo?.Email" [disabled]="true">
+            </div>
+            <!-- Form Group (NID number)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="nidNumber">NID Number </label>
+              <input class="form-control" id="nidNumber" type="text"
+                     [value]="tenantRegistrationForm?.PersonalInfo?.NIDNumber" [disabled]="true">
+            </div>
+            <!-- Form Group (passport number)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="passportNumber">Passport Number </label>
+              <input class="form-control" id="passportNumber" type="text"
+                     [value]="tenantRegistrationForm?.PersonalInfo?.PassportNumber" [disabled]="true">
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="mb-3 float-end">
+            <div class="d-flex flex-column">
+              <label class="small mb-1 text-center" for="signature">Signature </label>
+              <img class="img-thumbnail rounded mx-auto d-block img-signature" id="signature"
+                   [src]="tenantRegistrationForm?.PersonalInfo?.Signature" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pageNumber===2" class="row">
+    <div class="col-xl-12">
+      <!-- present address card-->
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="d-flex justify-content-center flex-row">
+            <!-- header card-->
+            <div>Present Address</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Form Row-->
+            <div class="row gx-3 mb-3">
+              <!-- Form Group (Flat No)-->
+              <div class="col-md-4">
+                <label class="small mb-1" for="flatNo">Flat No</label>
+                <input class="form-control" id="flatNo" type="text"
+                       [value]="tenantRegistrationForm?.PresentAddress?.FlatNo" [disabled]="true">
+              </div>
+              <!-- Form Group (House No)-->
+              <div class="col-md-4">
+                <label class="small mb-1" for="houseNo">House No</label>
+                <input class="form-control" id="houseNo" type="text"
+                       [value]="tenantRegistrationForm?.PresentAddress?.HouseNo" [disabled]="true">
+              </div>
+              <!-- Form Group (House No)-->
+              <div class="col-md-4">
+                <label class="small mb-1" for="roadNo">Road No</label>
+                <input class="form-control" id="roadNo" type="text"
+                       [value]="tenantRegistrationForm?.PresentAddress?.RoadNo" [disabled]="true">
+              </div>
+            </div>
+            <!-- Form Row-->
+            <div class="row gx-3 mb-3">
+              <!-- Form Group (Flat No)-->
+              <div class="col-md-8">
+                <label class="small mb-1" for="area">Area</label>
+                <input class="form-control" id="area" type="text"
+                       [value]="tenantRegistrationForm?.PresentAddress?.Area" [disabled]="true">
+              </div>
+              <!-- Form Group (House No)-->
+              <div class="col-md-4">
+                <label class="small mb-1" for="postalCode">Postal Code</label>
+                <input class="form-control" id="postalCode" type="text"
+                       [value]="tenantRegistrationForm?.PresentAddress?.PostalCode" [disabled]="true">
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pageNumber===3" class="row">
+    <div class="col-xl-12">
+      <!-- emergency contact card-->
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="d-flex justify-content-center flex-row">
+            <!-- header card-->
+            <div>Emergency Contact</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Form Group (guardian name)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="guardianName">Guardian Name</label>
+              <input class="form-control" id="guardianName" type="text"
+                     [value]="tenantRegistrationForm?.EmergencyContact?.GuardianName" [disabled]="true">
+            </div>
+            <!-- Form Group (relation)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="relation">Relation</label>
+              <input class="form-control" id="relation" type="text"
+                     [value]="tenantRegistrationForm?.EmergencyContact?.GuardianName" [disabled]="true">
+            </div>
+            <!-- Form Group (relation)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="guardianAddress">Guardian Address</label>
+              <input class="form-control" id="guardianAddress" type="text"
+                     [value]="tenantRegistrationForm?.EmergencyContact?.GuardianAddress" [disabled]="true">
+            </div>
+            <!-- Form Group (guardian phone number)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="guardianPhoneNumber">Guardian Phone Number</label>
+              <input class="form-control" id="guardianPhoneNumber" type="text"
+                     [value]="tenantRegistrationForm?.EmergencyContact?.GuardianPhoneNumber" [disabled]="true">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pageNumber===4" class="row">
+    <div class="col-xl-12">
+      <!-- driver info card-->
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="d-flex justify-content-center flex-row">
+            <!-- header card-->
+            <div>Driver Info</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Form Group (driver name)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="driverName">Driver Name</label>
+              <input class="form-control" id="driverName" type="text"
+                     [value]="tenantRegistrationForm?.Driver?.DriverName" [disabled]="true">
+            </div>
+            <!-- Form Group (driver nid number)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="driverNIDNumber">Driver NID Number</label>
+              <input class="form-control" id="driverNIDNumber" type="text"
+                     [value]="tenantRegistrationForm?.Driver?.DriverNIDNumber" [disabled]="true">
+            </div>
+            <!-- Form Group (driver phone number)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="driverPhoneNumber">Driver Phone Number</label>
+              <input class="form-control" id="driverPhoneNumber" type="text"
+                     [value]="tenantRegistrationForm?.Driver?.DriverPhoneNumber" [disabled]="true">
+            </div>
+            <!-- Form Group (driver permanent address)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="driverPermanentAddress">Driver Permanent Address</label>
+              <input class="form-control" id="driverPermanentAddress" type="text"
+                     [value]="tenantRegistrationForm?.Driver?.DriverPermanentAddress" [disabled]="true">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pageNumber===5" class="row">
+    <div class="col-xl-12">
+      <!-- housekeeper info card-->
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="d-flex justify-content-center flex-row">
+            <!-- header card-->
+            <div>Housekeeper Info</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Form Group (driver name)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="housekeeperName">Housekeeper Name</label>
+              <input class="form-control" id="housekeeperName" type="text"
+                     [value]="tenantRegistrationForm?.Housekeeper?.HousekeeperName" [disabled]="true">
+            </div>
+            <!-- Form Group (driver nid number)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="housekeeperNIDNumber">Housekeeper NID Number</label>
+              <input class="form-control" id="housekeeperNIDNumber" type="text"
+                     [value]="tenantRegistrationForm?.Housekeeper?.HousekeeperNIDNumber" [disabled]="true">
+            </div>
+            <!-- Form Group (driver phone number)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="housekeeperPhoneNumber">Housekeeper Phone Number</label>
+              <input class="form-control" id="housekeeperPhoneNumber" type="text"
+                     [value]="tenantRegistrationForm?.Housekeeper?.HousekeeperPhoneNumber" [disabled]="true">
+            </div>
+            <!-- Form Group (driver permanent address)-->
+            <div class="mb-3">
+              <label class="small mb-1" for="housekeeperPermanentAddress">Housekeeper Permanent Address</label>
+              <input class="form-control" id="housekeeperPermanentAddress" type="text"
+                     [value]="tenantRegistrationForm?.Housekeeper?.HousekeeperPermanentAddress" [disabled]="true">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
