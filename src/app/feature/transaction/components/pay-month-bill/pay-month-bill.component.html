@@ -1,1 +1,51 @@
-<p>pay-month-bill works!</p>
+<div class="container-xl px-4 mt-4">
+  <div class="row">
+
+    <div class="col-lg-4 mb-4">
+      <!-- Billing card 1-->
+      <div class="card h-100 border-start-lg border-start-primary">
+        <div class="card-body">
+          <div class="small text-muted">Current monthly bill</div>
+          <div class="h3">20.00 ৳</div>
+          <a class="text-arrow-icon small" href="#!">
+            Switch to pay monthly billing
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-arrow-right">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Billing history card-->
+    <div class="card mb-4">
+      <div class="card-header">Transaction History</div>
+      <div class="card-body p-0">
+        <!-- Billing history table-->
+        <div class="table-responsive table-billing-history">
+          <table class="table mb-0">
+            <thead>
+            <tr>
+              <th class="border-gray-200" scope="col">Transaction ID</th>
+              <th class="border-gray-200" scope="col">Date</th>
+              <th class="border-gray-200" scope="col">Amount</th>
+              <th class="border-gray-200" scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>#39201</td>
+              <td>06/15/2021</td>
+              <td>$29.99</td>
+              <td><span class="badge bg-light text-dark">Pending</span></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  </div>
+</div>
