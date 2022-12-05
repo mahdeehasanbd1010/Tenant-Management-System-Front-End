@@ -15,6 +15,7 @@ export const environment = {
   },
   baseUrl:"https://localhost:9000/api/",
   allowedDomains: "https://localhost:9000",
+  stripAPIKey: "pk_test_51MBfVRSBl3XrqNkuNu2y92ObOWhX6Mr4M684Mb9ndvG730DgOlVYTK5YrlXgqah4c23smnhY0YyAEk0IOU9mE9ql0096tpB9YT"
 };
 
 /*

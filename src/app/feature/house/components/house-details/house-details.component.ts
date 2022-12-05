@@ -61,7 +61,7 @@ export class HouseDetailsComponent implements OnInit {
         houseId: [this.house.HouseId, Validators.required],
         homeownerUserName: [this.house.HomeownerUserName, Validators.required],
         address: [this.house.Address, Validators.required],
-        flatList: [this.house.FlatList, Validators.required]
+        flatList: [this.house.FlatList]
       }
     );
   }
@@ -73,6 +73,7 @@ export class HouseDetailsComponent implements OnInit {
   }
 
   onSaveChanges(){
+    console.log(this.form);
     if (this.form.invalid) {
       return;
     }

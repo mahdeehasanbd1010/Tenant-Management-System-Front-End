@@ -47,4 +47,23 @@ export class TenantDetailsComponent implements OnInit {
       }
     });
   }
+
+  downloadRegistrationForm(){
+    this.tenantDetailsService.downloadRegistrationForm(this.tenantUserName).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        let fileName: any = this.tenantUserName+'.pdf';
+        // console.log(response.headers.get('Content-Disposition'));
+        let blob: Blob = response.body as Blob;
+        let a = document.createElement('a');
+        a.download = fileName;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      },
+      error: (err: any) => {
+        alert(err.message);
+        console.log(err.message);
+      }
+    });
+  }
 }

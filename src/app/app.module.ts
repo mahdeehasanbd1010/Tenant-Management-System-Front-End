@@ -9,6 +9,7 @@ import {FeatureModule} from "./feature/feature.module";
 import {HouseModule} from "./feature/house/house.module";
 import {ProfileModule} from "./feature/profile/profile.module";
 import {environment} from "../environments/environment";
+import {TransactionModule} from "./feature/transaction/transaction.module";
 
 export function tokenGetter(){
   return localStorage.getItem("jwt");
@@ -25,13 +26,14 @@ export function tokenGetter(){
     FeatureModule,
     HouseModule,
     ProfileModule,
+    TransactionModule,
     JwtModule.forRoot({
       config:{
         tokenGetter: tokenGetter,
         allowedDomains: [environment.allowedDomains],
         disallowedRoutes: []
       }
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

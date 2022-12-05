@@ -29,8 +29,8 @@
       <div *ngIf="userType === 'Tenant' && isAuthenticateUser && isAuthenticateTenant">
         <div class="navbar-nav">
           <a class="nav-link {{containKeyWord('')?'active':''}}" aria-current="page" href="/">Home</a>
-          <a class="nav-link {{containKeyWord('house')?'active':''}}" href="">Complaint Box</a>
-          <a class="nav-link {{containKeyWord('transaction')?'active':''}}" href="#">Transaction</a>
+<!--          <a class="nav-link {{containKeyWord('house')?'active':''}}" href="">Complaint Box</a>-->
+          <a class="nav-link {{containKeyWord('transaction')?'active':''}}" href="transaction/tenant">Transaction</a>
           <a class="nav-link {{containKeyWord('about')?'active':''}}" href="#">About</a>
           <a class="nav-link {{containKeyWord('help')?'active':''}}" href="#" tabindex="-1">Help</a>
         </div>

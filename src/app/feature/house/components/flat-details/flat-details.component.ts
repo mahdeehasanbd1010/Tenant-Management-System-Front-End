@@ -74,7 +74,7 @@ export class FlatDetailsComponent implements OnInit {
         tenantUserName:[this.flat.tenantUserName==null?"":this.flat.tenantUserName],
         isRent:[this.flat.IsRent, Validators.required],
         isRentRequest:[this.flat.IsRentRequest, Validators.required],
-        utilityBillList:[this.flat.UtilityBillList, Validators.required]
+        utilityBillList:[this.flat.UtilityBillList]
       }
     );
   }
@@ -85,6 +85,7 @@ export class FlatDetailsComponent implements OnInit {
   }
 
   onSaveChanges(){
+    console.log(this.form);
     if (this.form.invalid) {
       return;
     }

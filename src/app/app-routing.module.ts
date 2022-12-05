@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path:'profile',
     loadChildren: () => import('./feature/profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
+    path:'transaction',
+    loadChildren: () => import('./feature/transaction/transaction.module').then(m => m.TransactionModule)
   }
 ];
 

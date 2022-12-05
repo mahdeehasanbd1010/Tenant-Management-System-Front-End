@@ -13,4 +13,8 @@ export class TenantDetailsService {
   public getTenantRegistrationForm(tenantUserName: string):Observable<any>{
     return this.http.get(environment.baseUrl+'tenantRegistrationForm/getTenantInfo/' + tenantUserName);
   }
+  public downloadRegistrationForm(tenantUserName: string){
+    return this.http.get(environment.baseUrl+'pdfCreator/' + tenantUserName,
+      {observe:'response', responseType:'blob'});
+  }
 }

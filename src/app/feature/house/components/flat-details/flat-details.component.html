@@ -172,21 +172,29 @@
       <div *ngIf="!flat?.IsRent">
         <div class="card h-100 border-start-lg border-start-secondary">
           <div class="card-body">
-            <div class="small text-muted">Empty Flat</div>
-            <div class="h3">No Current Tenant</div>
+            <div class="small text-muted">No Current Tenant</div>
+            <div class="h3">Empty Flat</div>
           </div>
         </div>
       </div>
       <div *ngIf="flat?.IsRent">
         <div class="card h-100 border-start-lg border-start-secondary">
           <div class="card-body">
-            <div class="small text-muted">{{flat?.TenantUserName}}</div>
-            <div class="h3">Current Tenant</div>
+            <div class="small text-muted">Current Tenant</div>
+            <div class="h3">{{flat?.TenantUserName}}</div>
             <a class="text-arrow-icon small" [href]="'house/tenantDetails/'+flat?.TenantUserName+'/'+1">
               Switch to Tenant Details
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
           </div>
+        </div>
+      </div>
+      <div class="card h-100 border-start-lg border-start-primary">
+        <div class="card-body">
+          <div class="h3">Going back to</div>
+          <a class="text-arrow-icon small" [href]="'house/details/' + houseId">{{houseId}} house
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
     </div>

@@ -16,6 +16,7 @@ export class HomeownerProfileComponent implements OnInit {
 
   isEditable: boolean = false;
   currentHouseNumber: number = 0;
+  currentFlatNumber: number = 0;
 
   homeowner: any;
   homeownerUserName!: string;
@@ -44,6 +45,7 @@ export class HomeownerProfileComponent implements OnInit {
         if (response) {
           this.homeowner = response;
           this.currentHouseNumber = this.homeowner.HouseList.length;
+          this.currentFlatNumber = this.countFlatNumber(this.homeowner.HouseList);
           console.log(this.homeowner);
         }
       },
@@ -52,6 +54,15 @@ export class HomeownerProfileComponent implements OnInit {
         console.log(err.message);
       }
     });
+  }
+
+  countFlatNumber(houseList: any){
+    let flatNumber: number = 0;
+
+    for(let house of houseList){
+      flatNumber+=house.FlatList.length;
+    }
+    return flatNumber;
   }
 
 
