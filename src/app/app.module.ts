@@ -10,6 +10,7 @@ import {HouseModule} from "./feature/house/house.module";
 import {ProfileModule} from "./feature/profile/profile.module";
 import {environment} from "../environments/environment";
 import {TransactionModule} from "./feature/transaction/transaction.module";
+import { StripeModule } from "stripe-angular"
 
 export function tokenGetter(){
   return localStorage.getItem("jwt");
@@ -22,6 +23,7 @@ export function tokenGetter(){
   imports: [
     BrowserModule,
     AppRoutingModule,
+    StripeModule,
     CoreModule,
     FeatureModule,
     HouseModule,
@@ -34,6 +36,7 @@ export function tokenGetter(){
         disallowedRoutes: []
       }
     }),
+    StripeModule.forRoot(environment.stripAPIKey),
   ],
   providers: [],
   bootstrap: [AppComponent]

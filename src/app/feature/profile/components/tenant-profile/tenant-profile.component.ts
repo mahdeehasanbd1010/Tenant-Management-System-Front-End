@@ -35,7 +35,6 @@ export class TenantProfileComponent implements OnInit {
   }
 
   getTenantInfo(){
-    console.log("here")
     this.tenantProfileService.getTenantInfo(this.tenantUsername).subscribe({
       next: (response: any) => {
         if (response) {

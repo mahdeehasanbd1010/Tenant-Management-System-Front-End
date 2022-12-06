@@ -97,7 +97,6 @@ export class VerifyOtpComponent implements OnInit {
           }
           });
         }
-
       }).catch((error: any)=>{
         alert(error.message);
         console.log(error);

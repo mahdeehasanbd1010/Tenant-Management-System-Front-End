@@ -1,0 +1,47 @@
+<div class="container-xl px-4 mt-4">
+  <!-- Flat Details page navigation-->
+  <nav class="nav nav-borders">
+    <a class="nav-link ms-0" [href]="'house/details/'+houseId+'/flat/'+flatId">Flat Details</a>
+    <a class="nav-link ms-0" [href]="'house/details/'+houseId+'/flat/'+flatId+'/utilitiesBills'">Utilities Bills</a>
+    <a class="nav-link active ms-0" [href]="'transaction/homeowner/'+houseId+'/flat/'+flatId">Transaction History</a>
+  </nav>
+  <hr class="mt-0 mb-4">
+
+  <!-- transaction history card-->
+  <div class="card mb-4">
+    <div class="card-header">
+      <div class="d-flex justify-content-center flex-row">
+        <!-- header card-->
+        <div>Transaction History</div>
+      </div>
+    </div>
+
+    <div class="card-body p-0">
+      <!-- Billing history table-->
+      <div class="table-responsive table-billing-history">
+        <table class="table mb-0">
+          <thead>
+          <tr>
+            <th class="border-gray-200" scope="col">Transaction ID</th>
+            <th class="border-gray-200" scope="col">Tenant Username</th>
+            <th class="border-gray-200" scope="col">Date</th>
+            <th class="border-gray-200" scope="col">Time</th>
+            <th class="border-gray-200" scope="col">Amount</th>
+            <th class="border-gray-200" scope="col">Memo</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let transaction of transactionList">
+            <td>{{transaction?.Id}}</td>
+            <td>{{transaction?.TenantUserName}}</td>
+            <td>{{transaction?.TransactionDate |date:'dd MMMM yyyy'}}</td>
+            <td>{{transaction?.TransactionDate |date:'h:mm:ss a'}}</td>
+            <td>{{transaction?.TransactionAmount}} ৳</td>
+            <td><span class="badge bg-success text-dark">download</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
